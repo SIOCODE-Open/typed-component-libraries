@@ -1,0 +1,17 @@
+id: basic
+name: Basic Types
+description: The basic types supported for data structure fields
+schema: BasicType
+objects:
+  - name: string
+    description: A string
+    ts: string
+    tsDefault: '""'
+  - name: number
+    description: A number
+    ts: number
+    tsDefault: "0"
+  - name: boolean
+    description: A boolean
+    ts: boolean
+    tsDefault: "false"

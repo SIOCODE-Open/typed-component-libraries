@@ -1,0 +1,27 @@
+{
+    "name": "demo",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "react-dom": "*",
+        "component-library": "*"
+    },
+    "devDependencies": {
+        "typescript": "*",
+        "esbuild": "*",
+        "tailwindcss": "*",
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "@tailwindcss/typography": "*",
+        "concurrently": "*"
+    },
+    "scripts": {
+        "build:css": "tailwindcss -i ./src/tailwind.css -o ./public/tailwind.css",
+        "build:js": "esbuild ./src/index.tsx --bundle --minify --outfile=./public/index.bundle.js --platform=browser --jsx=automatic",
+        "build": "npm run build:css && npm run build:js",
+        "serve:css": "tailwindcss -i ./src/tailwind.css -o ./public/tailwind.css --watch",
+        "serve:js": "esbuild ./src/index.tsx --bundle --outfile=./public/index.bundle.js --platform=browser --jsx=automatic --servedir=public --serve=0.0.0.0:3100",
+        "serve": "concurrently \"npm run serve:css\" \"npm run serve:js\" -n \"CSS,JS\""
+    }
+}

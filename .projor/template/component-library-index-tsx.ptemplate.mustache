@@ -1,0 +1,11 @@
+{
+    "map": {
+        "interfaces": "interfaces"
+    },
+    "filename": "packages/component-library/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+{{#each interfaces}}
+export * from "comp-{{kebabCase name}}-badge";
+{{/each}}

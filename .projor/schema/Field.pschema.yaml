@@ -1,0 +1,8 @@
+id: Field
+name: Field
+description: A field in a data structure
+fields:
+  - name: type
+    description: The basic type of the field
+    type: reference
+    references: BasicType

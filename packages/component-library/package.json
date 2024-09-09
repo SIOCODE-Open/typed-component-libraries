@@ -1,0 +1,13 @@
+{
+    "name": "component-library",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "comp-product-badge": "*",
+        "react": "*"
+    },
+    "devDependencies": {
+        "typescript": "*"
+    }
+}

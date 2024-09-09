@@ -1,0 +1,23 @@
+id: interfaces
+name: Interfaces
+description: The data structures for which component code will be generated
+schema: Interface
+objects:
+  - name: Product
+    description: A product that is sold in a webshop
+    fields:
+      - name: sku
+        description: The stock keeping unit
+        type: basic#string
+      - name: name
+        description: The name of the product
+        type: basic#string
+      - name: description
+        description: A description of the product
+        type: basic#string
+      - name: price
+        description: The price of the product
+        type: basic#number
+      - name: is_available
+        description: Whether the product is available
+        type: basic#boolean

@@ -1,0 +1,23 @@
+{
+    "map": {
+        "interfaces": "interfaces"
+    },
+    "filename": "packages/component-library/package.json",
+    "formatUsing": "json"
+}
+---
+{
+    "name": "component-library",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        {{#each interfaces}}
+        "comp-{{kebabCase name}}-badge": "*",
+        {{/each}}
+        "react": "*"
+    },
+    "devDependencies": {
+        "typescript": "*"
+    }
+}

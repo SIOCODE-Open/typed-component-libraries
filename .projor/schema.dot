@@ -1,0 +1,7 @@
+digraph G {
+"Field" [label="Field"];
+"Interface" [label="Interface"];
+"BasicType" [label="Basic Type"];
+"Field" -> "BasicType" [label="type" arrowhead=vee];
+"Interface" -> "Field" [label="fields" arrowhead=diamond];
+}

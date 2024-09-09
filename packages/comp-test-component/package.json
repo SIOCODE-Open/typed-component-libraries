@@ -1,0 +1,12 @@
+{
+    "name": "comp-test-component",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "react": "*"
+    },
+    "devDependencies": {
+        "typescript": "*"
+    }
+}

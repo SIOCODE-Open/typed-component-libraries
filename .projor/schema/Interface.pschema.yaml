@@ -1,0 +1,9 @@
+id: Interface
+name: Interface
+description: A data structure, for which components will be generated
+fields:
+  - name: fields
+    description: The fields of the data structure
+    type: attachment
+    references: Field
+    multiple: true

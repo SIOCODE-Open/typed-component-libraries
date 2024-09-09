@@ -1,0 +1,10 @@
+id: BasicType
+name: Basic Type
+description: A basic type, such as int
+fields:
+  - name: ts
+    description: The TypeScript representation of the type
+    type: string
+  - name: tsDefault
+    description: The default value in TypeScript
+    type: string
