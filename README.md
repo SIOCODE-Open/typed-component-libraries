@@ -10,7 +10,7 @@ _This readme contains the full text of the article. The entire source code creat
 
 A _component library_ is a _frontend package_, that contains _reusable components_ we can build _frontend applications with_. There are many examples of component libraries, such as [PrimeReact](https://primereact.org/). If you're opting to use a component library, chances are you are doing so to save time and effort.
 
-In this article I am going to create a _component library from scratch_, that differs from the existing ones in a few ways. The reasons behind the approach introduced in the article include _type-safety_, and _reproducibility_, and _further efficiency gains_.
+In this article I am going to create a _component library from scratch_, that differs from the existing ones in a few ways. The reasons behind the approach introduced in the article include _type-safety_, _reproducibility_, and _further efficiency gains_.
 
 Let's get started!
 
@@ -936,7 +936,7 @@ export interface I{{pascalCase name}}BadgeProps {
 }
 
 /** The capitalized names of the fields */
-const {{constantCase name}}_BADGE_FIELD_NAMES = {
+export const {{constantCase name}}_BADGE_FIELD_NAMES = {
     {{#each fields}}
     {{camelCase name}}: "{{capitalCase name}}",
     {{/each}}
@@ -1089,3 +1089,277 @@ There are a few benefits to this approach, that I want to highlight as well.
 
 ![](images/badge-bad-value.png)
 
+## Adding a new data structure
+
+Now that we have moving parts templatized, we can start exploiting our setup, and write boilerplate really quickly! We can extend the `interfaces.pdata.yaml` file with a new data structure, and have generated:
+
+* The `comp-<new-structure>-badge` package,
+* The `component-library/package.json` file, and
+* The `component-library/src/index.tsx` file
+
+All with a single command!
+
+I will add a data structure called `Build` to the `interfaces.pdata.yaml` file:
+
+```yaml
+  - name: Build
+    description: One build of a program
+    fields:
+      - name: build_number
+        description: The build number of the build
+        type: basic#number
+      - name: date
+        description: The date of the build
+        type: basic#string
+      - name: status
+        description: The status of the build
+        type: basic#string
+```
+
+Now, if we run `projor generate`, we should see that in total _8 files are being generated_. Since we have changed the dependency tree, we also need to run `npm install`.
+
+We can also give the new badge a try in the `demo` package. Let's modify the `index.tsx` file in the `demo` package, and use the following code:
+
+```tsx
+<BuildBadge value={testBuild} field="buildNumber" danger />
+<BuildBadge value={testBuild} field="date" info />
+<BuildBadge value={testBuild} field="status" />
+```
+
+If we run `npm run -w demo serve`, we should see the following:
+
+![](images/build-badge-works.png)
+
+# Improvements
+
+Now, that we have a basic code generator setup going, it is time to do some improvements!
+
+* We will generate a _proper component demo page_, one that allows us to _experiment with the component props_.
+* We will also extend our range of _component archetypes_ with two new items: a _data table_, and an _input form_.
+
+## The proper demo page
+
+To make our component library a proper one, we need a page where the components, and their properties are showcased. Furthermore, we will create a "playground" to preview the different settings of the components.
+
+For this, we will have to create templates for the `demo` package. We will outsource the different component demo pages to their respective `.tsx` file, and `import` these from the `index.tsx` file. Let's create a new template, called `badge-component-demo-page-tsx.ptemplate.mustache`, and add the following content to it:
+
+```
+{
+    "forEach": "interfaces",
+    "filename": "packages/demo/src/{{kebabCase name}}-badge-demo.tsx",
+    "formatUsing": "typescript"
+}
+---
+import {
+    useState,
+    useEffect
+} from "react";
+import {
+    I{{pascalCase name}}BadgeProps,
+    {{pascalCase name}}BadgeField,
+    {{constantCase name}}_BADGE_FIELD_NAMES,
+    {{pascalCase name}}Badge,
+} from "component-library";
+
+const {{constantCase name}}_BADGE_FIELD_NAMES_LIST = Object.keys({{constantCase name}}_BADGE_FIELD_NAMES) as Array<{{pascalCase name}}BadgeField>;
+
+const {{constantCase name}}_DEFAULT_DATA = {
+    {{#each fields}}
+    {{camelCase name}}: {{{type.tsDefault}}},
+    {{/each}}
+};
+
+export function {{pascalCase name}}BadgeDemo() {
+    const [demoField, setDemoField] = useState<{{pascalCase name}}BadgeField>(
+        {{constantCase name}}_BADGE_FIELD_NAMES_LIST[0]
+    );
+    const [demoDanger, setDemoDanger] = useState<boolean>(false);
+    const [demoWarning, setDemoWarning] = useState<boolean>(false);
+    const [demoInfo, setDemoInfo] = useState<boolean>(false);
+    const [demoDataJson, setDemoDataJson] = useState<string>(
+        JSON.stringify({{constantCase name}}_DEFAULT_DATA, null, 2)
+    );
+    const [demoDataObject, setDemoDataObject] = useState<any>(
+        {{constantCase name}}_DEFAULT_DATA
+    );
+    const [demoDataParseError, setDemoDataParseError] = useState<string | null>(
+        null
+    );
+
+    // Try to update the demo data object when the JSON changes
+    useEffect(
+        () => {
+            try {
+                setDemoDataObject(JSON.parse(demoDataJson));
+                setDemoDataParseError(null);
+            } catch (error) {
+                setDemoDataParseError(error.message);
+            }
+        },
+        [demoDataJson]
+    );
+    
+    return <div className="flex flex-col justify-start items-center gap-2">
+
+        <p className="text-gray-600">Update demo data below</p>
+        <textarea rows={10} cols={40} value={demoDataJson} onChange={(e) => setDemoDataJson(e.target.value)}
+            className="border border-gray-300 rounded-lg p-2 font-mono"
+        />
+
+        <div className="flex flex-row justify-start items-center gap-2">
+            <label className="text-gray-600">Select the field to display</label>
+            <select value={demoField} 
+                onChange={(e) => setDemoField(e.target.value as {{pascalCase name}}BadgeField)}>
+                { 
+                    {{constantCase name}}_BADGE_FIELD_NAMES_LIST.map(
+                        (field) => (
+                            <option key={field} value={field}>{ {{constantCase name}}_BADGE_FIELD_NAMES[field] }</option>
+                        )
+                    ) 
+                }
+            </select>
+        </div>
+
+        <div className="flex flex-row justify-center items-center gap-2">
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Danger?</label>
+                <input type="checkbox" checked={demoDanger} onChange={(e) => setDemoDanger(e.target.checked)} />
+            </div>
+
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Warning?</label>
+                <input type="checkbox" checked={demoWarning} onChange={(e) => setDemoWarning(e.target.checked)} />
+            </div>
+
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Info?</label>
+                <input type="checkbox" checked={demoInfo} onChange={(e) => setDemoInfo(e.target.checked)} />
+            </div>
+        </div>
+
+        <{{pascalCase name}}Badge 
+            value={demoDataObject}
+            field={demoField}
+            danger={demoDanger}
+            warning={demoWarning}
+            info={demoInfo} />
+    </div>;
+
+}
+```
+
+Time for some explanation!
+
+* We are using `forEach`, so a separate demo page is generated for each badge component.
+* At the beginning of the file, we are `import`ing the necessary types and the badge component itself.
+* We are defining a list of field names, and the default data object.
+* We are defining the `{{pascalCase name}}BadgeDemo` component, which will be rendered in the demo page. In this component we have state variables for the _field_, and other _props_ of the component.
+* We also have a JSON text field, so that we can experiment with different data objects.
+
+Now let's do a quick test, and modify the `index.tsx` in the `demo` package to show the `ProductBadgeDemo` component:
+
+```tsx
+import { createRoot } from "react-dom/client";
+import { ProductBadgeDemo } from "./product-badge-demo";
+
+function App() {
+    return <div className="p-2 flex flex-col justify-start items-start gap-2">
+        <h1 className="text-2xl font-bold">Component Demo works!</h1>
+
+        <ProductBadgeDemo />
+    </div>
+}
+
+const rootEl = document.getElementById("root");
+const root = createRoot(rootEl);
+root.render(<App />);
+```
+
+Now we can run `npm run -w demo serve`, and open the application in the browser. If everything went well, you should see the following:
+
+![](images/generated-badge-demo-works.gif)
+
+Alright! It is time to make some "proper" navigation for the demo page! Let's create a new template, called `demo-index-tsx.ptemplate.mustache`, and add the following content to it:
+
+```
+{
+    "map": {
+        "interfaces": "interfaces"
+    },
+    "filename": "packages/demo/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import { createRoot } from "react-dom/client";
+import {
+    useState,
+    useEffect,
+    useRef
+} from "react";
+{{#each interfaces}}
+import { {{pascalCase name}}BadgeDemo } from "./{{kebabCase name}}-badge-demo";
+{{/each}}
+
+const DEMOS = {
+    {{#each interfaces}}
+    {{pascalCase name}}BadgeDemo,
+    {{/each}}
+};
+
+const DEMO_NAMES = {
+    {{#each interfaces}}
+    {{pascalCase name}}BadgeDemo: "{{capitalCase name}} Badge",
+    {{/each}}
+};
+
+const DEMO_NAMES_LIST = Object.keys(DEMO_NAMES);
+
+function App() {
+    const currentDemoComponentRef = useRef(
+        DEMOS[DEMO_NAMES_LIST[0]]
+    )
+    const [currentDemoKey, setCurrentDemoKey] = useState<string>(DEMO_NAMES_LIST[0]);
+    const [demoUpdateKey, setDemoUpdateKey] = useState<number>(0);
+
+    // Update the current demo component when the key changes
+    useEffect(
+        () => {
+            currentDemoComponentRef.current = DEMOS[currentDemoKey];
+            setDemoUpdateKey(demoUpdateKey + 1);
+        },
+        [currentDemoKey]
+    );
+
+    return <div className="p-2 flex flex-col justify-start items-start gap-2">
+        <h1 className="text-2xl font-bold">Component Demo!</h1>
+
+        <p className="text-gray-600">Select a component demo</p>
+
+        <select value={currentDemoKey} onChange={(e) => setCurrentDemoKey(e.target.value)}>
+            {
+                DEMO_NAMES_LIST.map(
+                    (demoKey) => (
+                        <option key={demoKey} value={demoKey}>{DEMO_NAMES[demoKey]}</option>
+                    )
+                )
+            }
+        </select>
+
+        <currentDemoComponentRef.current key={demoUpdateKey} />
+    </div>
+}
+
+const rootEl = document.getElementById("root");
+const root = createRoot(rootEl);
+root.render(<App />);
+```
+
+Now we can run `projor generate`, and after that, observe the changes in the browser. If all went well, you should see the following:
+
+![](images/demo-navigation-works.gif)
+
+# Conclusion
+
+In this article, we have set up a _monorepo_ for a _typed component library_. Using a code generator, we were able to deal with all boilerplate code associated with the large number of packages, and type definitions. Our setup resulted in a _type-safe_, and _IDE-friendly_ component library.
+
+🚀 Happy frontend development!

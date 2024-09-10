@@ -33,7 +33,7 @@ export interface I{{pascalCase name}}BadgeProps {
 }
 
 /** The capitalized names of the fields */
-const {{constantCase name}}_BADGE_FIELD_NAMES = {
+export const {{constantCase name}}_BADGE_FIELD_NAMES = {
     {{#each fields}}
     {{camelCase name}}: "{{capitalCase name}}",
     {{/each}}

@@ -21,3 +21,15 @@ objects:
       - name: is_available
         description: Whether the product is available
         type: basic#boolean
+  - name: Build
+    description: One build of a program
+    fields:
+      - name: build_number
+        description: The build number of the build
+        type: basic#number
+      - name: date
+        description: The date of the build
+        type: basic#string
+      - name: status
+        description: The status of the build
+        type: basic#string

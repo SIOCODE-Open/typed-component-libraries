@@ -1,0 +1,102 @@
+{
+    "forEach": "interfaces",
+    "filename": "packages/demo/src/{{kebabCase name}}-badge-demo.tsx",
+    "formatUsing": "typescript"
+}
+---
+import {
+    useState,
+    useEffect
+} from "react";
+import {
+    I{{pascalCase name}}BadgeProps,
+    {{pascalCase name}}BadgeField,
+    {{constantCase name}}_BADGE_FIELD_NAMES,
+    {{pascalCase name}}Badge,
+} from "component-library";
+
+const {{constantCase name}}_BADGE_FIELD_NAMES_LIST = Object.keys({{constantCase name}}_BADGE_FIELD_NAMES) as Array<{{pascalCase name}}BadgeField>;
+
+const {{constantCase name}}_DEFAULT_DATA = {
+    {{#each fields}}
+    {{camelCase name}}: {{{type.tsDefault}}},
+    {{/each}}
+};
+
+export function {{pascalCase name}}BadgeDemo() {
+    const [demoField, setDemoField] = useState<{{pascalCase name}}BadgeField>(
+        {{constantCase name}}_BADGE_FIELD_NAMES_LIST[0]
+    );
+    const [demoDanger, setDemoDanger] = useState<boolean>(false);
+    const [demoWarning, setDemoWarning] = useState<boolean>(false);
+    const [demoInfo, setDemoInfo] = useState<boolean>(false);
+    const [demoDataJson, setDemoDataJson] = useState<string>(
+        JSON.stringify({{constantCase name}}_DEFAULT_DATA, null, 2)
+    );
+    const [demoDataObject, setDemoDataObject] = useState<any>(
+        {{constantCase name}}_DEFAULT_DATA
+    );
+    const [demoDataParseError, setDemoDataParseError] = useState<string | null>(
+        null
+    );
+
+    // Try to update the demo data object when the JSON changes
+    useEffect(
+        () => {
+            try {
+                setDemoDataObject(JSON.parse(demoDataJson));
+                setDemoDataParseError(null);
+            } catch (error) {
+                setDemoDataParseError(error.message);
+            }
+        },
+        [demoDataJson]
+    );
+    
+    return <div className="flex flex-col justify-start items-center gap-2">
+
+        <p className="text-gray-600">Update demo data below</p>
+        <textarea rows={10} cols={40} value={demoDataJson} onChange={(e) => setDemoDataJson(e.target.value)}
+            className="border border-gray-300 rounded-lg p-2 font-mono"
+        />
+
+        <div className="flex flex-row justify-start items-center gap-2">
+            <label className="text-gray-600">Select the field to display</label>
+            <select value={demoField} 
+                onChange={(e) => setDemoField(e.target.value as {{pascalCase name}}BadgeField)}>
+                { 
+                    {{constantCase name}}_BADGE_FIELD_NAMES_LIST.map(
+                        (field) => (
+                            <option key={field} value={field}>{ {{constantCase name}}_BADGE_FIELD_NAMES[field] }</option>
+                        )
+                    ) 
+                }
+            </select>
+        </div>
+
+        <div className="flex flex-row justify-center items-center gap-2">
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Danger?</label>
+                <input type="checkbox" checked={demoDanger} onChange={(e) => setDemoDanger(e.target.checked)} />
+            </div>
+
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Warning?</label>
+                <input type="checkbox" checked={demoWarning} onChange={(e) => setDemoWarning(e.target.checked)} />
+            </div>
+
+            <div className="flex flex-row justify-start items-center gap-2">
+                <label className="text-gray-600">Info?</label>
+                <input type="checkbox" checked={demoInfo} onChange={(e) => setDemoInfo(e.target.checked)} />
+            </div>
+        </div>
+
+        <{{pascalCase name}}Badge 
+            value={demoDataObject}
+            field={demoField}
+            danger={demoDanger}
+            warning={demoWarning}
+            info={demoInfo} />
+    </div>;
+
+}

@@ -5,6 +5,7 @@
     "main": "src/index.tsx",
     "dependencies": {
         "comp-product-badge": "*",
+        "comp-build-badge": "*",
         "react": "*"
     },
     "devDependencies": {
