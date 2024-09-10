@@ -6,6 +6,10 @@ _Date_: **September, 2024**
 
 _This readme contains the full text of the article. The entire source code created in the article is available in this repository as well._
 
+# Disclaimer
+
+This article revolves around _technical concepts_, and the possibility of _boilerplate code generation_. While the article is based around the subject of _frontend generation_, the author is **not a professional designer**. Furthermore, the author of the article is _color-blind_. Please be so kind as to excuse us, if you are not pleased with the _presented visuals_, since making the _best looking thing was **not a scope for this article**_. Thank you!
+
 # Introduction
 
 A _component library_ is a _frontend package_, that contains _reusable components_ we can build _frontend applications with_. There are many examples of component libraries, such as [PrimeReact](https://primereact.org/). If you're opting to use a component library, chances are you are doing so to save time and effort.
