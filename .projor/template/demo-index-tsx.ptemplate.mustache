@@ -14,17 +14,20 @@ import {
 } from "react";
 {{#each interfaces}}
 import { {{pascalCase name}}BadgeDemo } from "./{{kebabCase name}}-badge-demo";
+import { {{pascalCase name}}DataTableDemo } from "./{{kebabCase name}}-table-demo";
 {{/each}}
 
 const DEMOS = {
     {{#each interfaces}}
     {{pascalCase name}}BadgeDemo,
+    {{pascalCase name}}DataTableDemo,
     {{/each}}
 };
 
 const DEMO_NAMES = {
     {{#each interfaces}}
     {{pascalCase name}}BadgeDemo: "{{capitalCase name}} Badge",
+    {{pascalCase name}}DataTableDemo: "{{capitalCase name}} Data Table",
     {{/each}}
 };
 

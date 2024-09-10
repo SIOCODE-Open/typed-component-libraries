@@ -1,0 +1,71 @@
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-table/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import classNames from "classnames";
+
+/** The columns available to be shown in the data table */
+export type {{pascalCase name}}DataTableColumn = {{#each fields}}"{{camelCase name}}"{{#unless @last}} | {{/unless}}{{/each}};
+
+/** Props for the {{pascalCase name}}DataTable component */
+export interface I{{pascalCase name}}DataTableProps {
+    /** {{{description}}} */
+    value: Array<{
+        {{#each fields}}
+        /** {{{description}}} */
+        {{camelCase name}}: {{type.ts}};
+        {{/each}}
+    }>;
+
+    /** The columns to show in the data table */
+    columns: Array<{{pascalCase name}}DataTableColumn>;
+}
+
+/** The capitalized names of the columns */
+export const {{constantCase name}}_DATA_TABLE_COLUMN_NAMES = {
+    {{#each fields}}
+    {{camelCase name}}: "{{capitalCase name}}",
+    {{/each}}
+};
+
+/** Shows a {{capitalCase name}} data table */
+export function {{pascalCase name}}DataTable(
+    props: I{{pascalCase name}}DataTableProps
+) {
+    const columnHeaderCells = props.columns.map(
+        (column, index) => (
+            <th key={index} className="p-2 border border-gray-600">
+                { {{constantCase name}}_DATA_TABLE_COLUMN_NAMES[column] }
+            </th>
+        )
+    );
+    const dataRows = props.value.map(
+        (row, rowIndex) => (
+            <tr key={rowIndex}>
+                {
+                    props.columns.map(
+                        (column, columnIndex) => (
+                            <td key={columnIndex} className="p-2 border border-gray-800">
+                                {row[column]}
+                            </td>
+                        )
+                    )
+                }
+            </tr>
+        )
+    );
+    return (
+        <table className="table-auto">
+            <thead>
+                <tr>
+                    {columnHeaderCells}
+                </tr>
+            </thead>
+            <tbody>
+                {dataRows}
+            </tbody>
+        </table>
+    );
+}

@@ -5,7 +5,9 @@
     "main": "src/index.tsx",
     "dependencies": {
         "comp-product-badge": "*",
+        "comp-product-table": "*",
         "comp-build-badge": "*",
+        "comp-build-table": "*",
         "react": "*"
     },
     "devDependencies": {

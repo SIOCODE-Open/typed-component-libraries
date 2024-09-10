@@ -1139,7 +1139,7 @@ If we run `npm run -w demo serve`, we should see the following:
 Now, that we have a basic code generator setup going, it is time to do some improvements!
 
 * We will generate a _proper component demo page_, one that allows us to _experiment with the component props_.
-* We will also extend our range of _component archetypes_ with two new items: a _data table_, and an _input form_.
+* We will also extend our range of _component archetypes_ with a new item: a _data table_. This will be a component that takes an array of objects, and displays them in a table.
 
 ## The proper demo page
 
@@ -1362,8 +1362,297 @@ Now we can run `projor generate`, and after that, observe the changes in the bro
 
 ![](images/demo-navigation-works.gif)
 
+## The `<XYZTable />` component
+
+Now, we'll extend the range of available _component archetypes_: we are going to create a _data table component_ for each of the defined interfaces.
+
+Let's first gather the points where we'll have to make changes:
+
+* We will need the `comp-xyz-table` packages, so we have to generate the `package.json`, `tsconfig.json` and `index.tsx` files for these.
+* We will also need to modify the template responsible for generating the `component-library/package.json` file, and the `component-library/src/index.tsx` file.
+* We will need to generate a _demo page_ for the data tables as well, and modify the `index.tsx` file in the `demo` package to show the `ProductTableDemo` component.
+
+Let's start with the `comp-xyz-table` package. We'll create a new template, called `table-component-package-json.ptemplate.mustache`, and add the following content to it:
+
+```
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-table/package.json",
+    "formatUsing": "json"
+}
+---
+{
+    "name": "comp-{{kebabCase name}}-table",
+    "description": "Data table component for the {{capitalCase name}} interface",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "react": "*",
+        "classnames": "*"
+    }
+}
+```
+
+Let's also create the `table-component-tsconfig-json.ptemplate.mustache` file (almost exactly the same, as in the case of the badge component):
+
+```
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-table/tsconfig.json",
+    "formatUsing": "json"
+}
+---
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "ES2015",
+        "moduleResolution": "Node",
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "jsx": "react-native"
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules"]
+}
+```
+
+Finally, we will create the `table-component-index-tsx.ptemplate.mustache` file:
+
+```
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-table/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import classNames from "classnames";
+
+/** The columns available to be shown in the data table */
+export type {{pascalCase name}}DataTableColumn = {{#each fields}}"{{camelCase name}}"{{#unless @last}} | {{/unless}}{{/each}};
+
+/** Props for the {{pascalCase name}}DataTable component */
+export interface I{{pascalCase name}}DataTableProps {
+    /** {{{description}}} */
+    value: Array<{
+        {{#each fields}}
+        /** {{{description}}} */
+        {{camelCase name}}: {{type.ts}};
+        {{/each}}
+    }>;
+
+    /** The columns to show in the data table */
+    columns: Array<{{pascalCase name}}DataTableColumn>;
+}
+
+/** The capitalized names of the columns */
+export const {{constantCase name}}_DATA_TABLE_COLUMN_NAMES = {
+    {{#each fields}}
+    {{camelCase name}}: "{{capitalCase name}}",
+    {{/each}}
+};
+
+/** Shows a {{capitalCase name}} data table */
+export function {{pascalCase name}}DataTable(
+    props: I{{pascalCase name}}DataTableProps
+) {
+    const columnHeaderCells = props.columns.map(
+        (column, index) => (
+            <th key={index} className="p-2 border border-gray-600">
+                { {{constantCase name}}_DATA_TABLE_COLUMN_NAMES[column] }
+            </th>
+        )
+    );
+    const dataRows = props.value.map(
+        (row, rowIndex) => (
+            <tr key={rowIndex}>
+                {
+                    props.columns.map(
+                        (column, columnIndex) => (
+                            <td key={columnIndex} className="p-2 border border-gray-800">
+                                {row[column]}
+                            </td>
+                        )
+                    )
+                }
+            </tr>
+        )
+    );
+    return (
+        <table className="table-auto">
+            <thead>
+                <tr>
+                    {columnHeaderCells}
+                </tr>
+            </thead>
+            <tbody>
+                {dataRows}
+            </tbody>
+        </table>
+    );
+}
+```
+
+Now the table component is ready. The next step is to make the `component-library` package depend on our table components, and have it export these new components as well.
+
+Let's make a few modifications to the `component-library-package-json.ptemplate.mustache` file:
+
+```
+{
+    "map": {
+        "interfaces": "interfaces"
+    },
+    "filename": "packages/component-library/package.json",
+    "formatUsing": "json"
+}
+---
+{
+    "name": "component-library",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        {{#each interfaces}}
+        "comp-{{kebabCase name}}-badge": "*",
+        "comp-{{kebabCase name}}-table": "*",
+        {{/each}}
+        "react": "*"
+    },
+    "devDependencies": {
+        "typescript": "*"
+    }
+}
+```
+
+Then, we'll also modify the `component-library-index-tsx.ptemplate.mustache` file:
+
+```
+{
+    "map": {
+        "interfaces": "interfaces"
+    },
+    "filename": "packages/component-library/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+{{#each interfaces}}
+export * from "comp-{{kebabCase name}}-badge";
+export * from "comp-{{kebabCase name}}-table";
+{{/each}}
+```
+
+What's left is to create a _demo page_ for the data tables, and modify the `index.tsx` file in the `demo` package to include the `ProductTableDemo` component in the navigation. Let's create a new template, called `table-component-demo-page-tsx.ptemplate.mustache`, and add the following content to it:
+
+```
+{
+    "forEach": "interfaces",
+    "filename": "packages/demo/src/{{kebabCase name}}-table-demo.tsx",
+    "formatUsing": "typescript"
+}
+---
+import {
+    useState,
+    useEffect
+} from "react";
+import {
+    I{{pascalCase name}}DataTableProps,
+    {{pascalCase name}}DataTableColumn,
+    {{constantCase name}}_DATA_TABLE_COLUMN_NAMES,
+    {{pascalCase name}}DataTable,
+} from "component-library";
+
+const {{constantCase name}}_DATA_TABLE_COLUMNS_LIST = Object.keys({{constantCase name}}_DATA_TABLE_COLUMN_NAMES) as Array<{{pascalCase name}}DataTableColumn>;
+
+const {{constantCase name}}_DEFAULT_ARRAY = [
+    {
+    {{#each fields}}
+        {{camelCase name}}: {{{type.tsDefault}}},
+    {{/each}}
+    }
+];
+
+export function {{pascalCase name}}DataTableDemo() {
+    const [demoColumns, setDemoColumns] = useState<Array<{{pascalCase name}}DataTableColumn>>(
+        {{constantCase name}}_DATA_TABLE_COLUMNS_LIST
+    );
+    const [demoDataJson, setDemoDataJson] = useState<string>(
+        JSON.stringify({{constantCase name}}_DEFAULT_ARRAY, null, 2)
+    );
+    const [demoDataArray, setDemoDataArray] = useState<Array<any>>(
+        {{constantCase name}}_DEFAULT_ARRAY
+    );
+
+    // Try to update the demo data array when the JSON changes
+    useEffect(
+        () => {
+            try {
+                setDemoDataArray(JSON.parse(demoDataJson));
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        [demoDataJson]
+    );
+
+    return <div className="flex flex-col justify-start items-center gap-2">
+
+        <p className="text-gray-600">Update demo data below</p>
+        <textarea rows={10} cols={40} value={demoDataJson} onChange={(e) => setDemoDataJson(e.target.value)}
+            className="border border-gray-300 rounded-lg p-2 font-mono"
+            placeholder="Enter an array of objects here"
+        />
+
+        <p className="text-gray-600">Select columns to show</p>
+        <select multiple={true} value={demoColumns} onChange={(e) => setDemoColumns(Array.from(e.target.selectedOptions, (option) => option.value as {{pascalCase name}}DataTableColumn))}>
+            {{#each fields}}
+            <option value="{{camelCase name}}">{{capitalCase name}}</option>
+            {{/each}}
+        </select>
+
+        <{{pascalCase name}}DataTable
+            value={demoDataArray}
+            columns={demoColumns}
+        />
+
+    </div>;
+}
+```
+
+Now we can modify the `index.tsx` file in the `demo` package to show the `ProductTableDemo` component in the list of selectable demos:
+
+* First, we have to include the correct `import` at the beginning of the file:
+
+```
+{{#each interfaces}}
+import { {{pascalCase name}}BadgeDemo } from "./{{kebabCase name}}-badge-demo";
+import { {{pascalCase name}}DataTableDemo } from "./{{kebabCase name}}-table-demo";
+{{/each}}
+```
+
+* We also have to extend the `DEMOS` and `DEMO_NAMES` variables:
+
+```
+const DEMOS = {
+    {{#each interfaces}}
+    {{pascalCase name}}BadgeDemo,
+    {{pascalCase name}}DataTableDemo,
+    {{/each}}
+};
+
+const DEMO_NAMES = {
+    {{#each interfaces}}
+    {{pascalCase name}}BadgeDemo: "{{capitalCase name}} Badge",
+    {{pascalCase name}}DataTableDemo: "{{capitalCase name}} Data Table",
+    {{/each}}
+};
+```
+
+Now we are ready for testing! Let's run `projor generate` to generate the code, followed by `npm install` due to the changed dependency tree. After that, we should run `npm run -w demo serve`, and open the application in the browser. If everything went well, you should be able to select the `Product Data Table` and `Build Data Table` demos, try them out. It should look like this (after some fiddling around on the UI):
+
+![](images/data-table-works.png)
+
 # Conclusion
 
 In this article, we have set up a _monorepo_ for a _typed component library_. Using a code generator, we were able to deal with all boilerplate code associated with the large number of packages, and type definitions. Our setup resulted in a _type-safe_, and _IDE-friendly_ component library.
 
-🚀 Happy frontend development!
+Happy frontend development! 🚀

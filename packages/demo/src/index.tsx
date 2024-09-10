@@ -1,16 +1,22 @@
 import { createRoot } from "react-dom/client";
 import { useState, useEffect, useRef } from "react";
 import { ProductBadgeDemo } from "./product-badge-demo";
+import { ProductDataTableDemo } from "./product-table-demo";
 import { BuildBadgeDemo } from "./build-badge-demo";
+import { BuildDataTableDemo } from "./build-table-demo";
 
 const DEMOS = {
     ProductBadgeDemo,
+    ProductDataTableDemo,
     BuildBadgeDemo,
+    BuildDataTableDemo,
 };
 
 const DEMO_NAMES = {
     ProductBadgeDemo: "Product Badge",
+    ProductDataTableDemo: "Product Data Table",
     BuildBadgeDemo: "Build Badge",
+    BuildDataTableDemo: "Build Data Table",
 };
 
 const DEMO_NAMES_LIST = Object.keys(DEMO_NAMES);
