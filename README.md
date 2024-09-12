@@ -90,7 +90,7 @@ Allow me to take a moment to explain the _tech stack_ we are going to use to bui
 * We will use _TypeScript_ to make our _components type-safe_, and support _IDE integration_.
 * We will use _Tailwind CSS V3_ to make it easier to _style our components_.
 * We will use the _esbuild_ module bundler to _build the JavaScript bundles_.
-* We will use the [ProJor](https://siocode.hu/products/pro-jor) to _generate code_ in the project.
+* We will use the [ProJor](https://projor.io) to _generate code_ in the project.
 
 We will create a _mono-repository_ to host all of our packages. This will make it easier to manage the dependencies between the packages.
 
@@ -670,7 +670,7 @@ In the following steps, we are going to apply a code generator to help us with b
 
 # Scaling up
 
-We are going to use [ProJor](https://siocode.hu/products/pro-jor), the model-based code generator to aid us in generating all the necessary boilerplate code. When working with ProJor, we have two separate tasks:
+We are going to use [ProJor](https://projor.io), the model-based code generator to aid us in generating all the necessary boilerplate code. When working with ProJor, we have two separate tasks:
 
 * Creating a _model_, and
 * Creating _templates_ on top of the model.
