@@ -1,0 +1,65 @@
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-list/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import classNames from "classnames";
+
+/** The field names available to be shown in the list */
+export type {{pascalCase name}}ListField = {{#each fields}}"{{camelCase name}}"{{#unless @last}} | {{/unless}}{{/each}};
+
+/** Props for the {{pascalCase name}}List component */
+export interface I{{pascalCase name}}ListProps {
+    /** {{{description}}} */
+    value: {
+        {{#each fields}}
+        /** {{{description}}} */
+        {{camelCase name}}: {{type.ts}};
+        {{/each}}
+    };
+
+    /** The field to show in the list */
+    field: {{pascalCase name}}ListField;
+
+    /** Whether the list should be styled as a danger list (red) */
+    danger?: boolean;
+
+    /** Whether the list should be styled as a warning list (yellow) */
+    warning?: boolean;
+
+    /** Whether the list should be styled as an info list (blue) */
+    info?: boolean;
+}
+
+/** The capitalized names of the fields */
+export const {{constantCase name}}_LIST_FIELD_NAMES = {
+    {{#each fields}}
+    {{camelCase name}}: "{{capitalCase name}}",
+    {{/each}}
+};
+
+/** Shows a {{capitalCase name}} list */
+export function {{pascalCase name}}List(
+    props: I{{pascalCase name}}ListProps
+) {
+    const valueClassname = classNames(
+        "text-white px-2 py-1 rounded-r-lg",
+        {
+            "bg-red-500": props.danger,
+            "bg-yellow-500": props.warning,
+            "bg-blue-500": props.info,
+            "bg-green-500": !props.danger && !props.warning && !props.info
+        }
+    );
+    return (
+        <div className="flex flex-row justify-start items-center">
+            <div className="bg-gray-600 text-white px-2 py-1 rounded-l-lg">
+                { {{constantCase name}}_LIST_FIELD_NAMES[props.field] }
+            </div>
+            <div className={valueClassname}>
+                {props.value[props.field]}
+            </div>
+        </div>
+    );
+}

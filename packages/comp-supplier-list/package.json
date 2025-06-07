@@ -1,0 +1,11 @@
+{
+    "name": "comp-supplier-list",
+    "description": "List component for the Supplier interface",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "react": "*",
+        "classnames": "*"
+    }
+}

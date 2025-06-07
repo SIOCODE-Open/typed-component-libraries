@@ -1,0 +1,65 @@
+{
+    "forEach": "interfaces",
+    "filename": "packages/comp-{{kebabCase name}}-detail/src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import classNames from "classnames";
+
+/** The field names available to be shown in the detail */
+export type {{pascalCase name}}DetailField = {{#each fields}}"{{camelCase name}}"{{#unless @last}} | {{/unless}}{{/each}};
+
+/** Props for the {{pascalCase name}}Detail component */
+export interface I{{pascalCase name}}DetailProps {
+    /** {{{description}}} */
+    value: {
+        {{#each fields}}
+        /** {{{description}}} */
+        {{camelCase name}}: {{type.ts}};
+        {{/each}}
+    };
+
+    /** The field to show in the detail */
+    field: {{pascalCase name}}DetailField;
+
+    /** Whether the detail should be styled as a danger detail (red) */
+    danger?: boolean;
+
+    /** Whether the detail should be styled as a warning detail (yellow) */
+    warning?: boolean;
+
+    /** Whether the detail should be styled as an info detail (blue) */
+    info?: boolean;
+}
+
+/** The capitalized names of the fields */
+export const {{constantCase name}}_DETAIL_FIELD_NAMES = {
+    {{#each fields}}
+    {{camelCase name}}: "{{capitalCase name}}",
+    {{/each}}
+};
+
+/** Shows a {{capitalCase name}} detail */
+export function {{pascalCase name}}Detail(
+    props: I{{pascalCase name}}DetailProps
+) {
+    const valueClassname = classNames(
+        "text-white px-2 py-1 rounded-r-lg",
+        {
+            "bg-red-500": props.danger,
+            "bg-yellow-500": props.warning,
+            "bg-blue-500": props.info,
+            "bg-green-500": !props.danger && !props.warning && !props.info
+        }
+    );
+    return (
+        <div className="flex flex-row justify-start items-center">
+            <div className="bg-gray-600 text-white px-2 py-1 rounded-l-lg">
+                { {{constantCase name}}_DETAIL_FIELD_NAMES[props.field] }
+            </div>
+            <div className={valueClassname}>
+                {props.value[props.field]}
+            </div>
+        </div>
+    );
+}

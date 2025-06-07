@@ -33,3 +33,117 @@ objects:
       - name: status
         description: The status of the build
         type: basic#string
+  - name: User
+    description: A user of the system
+    fields:
+      - name: id
+        description: Unique identifier
+        type: basic#string
+      - name: username
+        description: The username
+        type: basic#string
+      - name: email
+        description: The email address
+        type: basic#string
+      - name: is_active
+        description: Whether the user is active
+        type: basic#boolean
+  - name: Order
+    description: A purchase order
+    fields:
+      - name: order_id
+        description: The order ID
+        type: basic#string
+      - name: customer_id
+        description: The customer placing the order
+        type: basic#string
+      - name: total
+        description: The order total
+        type: basic#number
+      - name: status
+        description: The status of the order
+        type: basic#string
+  - name: Transaction
+    description: A financial transaction
+    fields:
+      - name: transaction_id
+        description: The transaction ID
+        type: basic#string
+      - name: amount
+        description: The transaction amount
+        type: basic#number
+      - name: date
+        description: The transaction date
+        type: basic#string
+      - name: status
+        description: The status of the transaction
+        type: basic#string
+  - name: Customer
+    description: A customer record
+    fields:
+      - name: id
+        description: Customer identifier
+        type: basic#string
+      - name: name
+        description: Customer name
+        type: basic#string
+      - name: email
+        description: Customer email
+        type: basic#string
+      - name: loyalty_points
+        description: Loyalty points
+        type: basic#number
+  - name: Category
+    description: A product category
+    fields:
+      - name: id
+        description: Category identifier
+        type: basic#string
+      - name: name
+        description: Category name
+        type: basic#string
+      - name: description
+        description: Category description
+        type: basic#string
+  - name: Review
+    description: A product review
+    fields:
+      - name: id
+        description: Review identifier
+        type: basic#string
+      - name: product_sku
+        description: The reviewed product SKU
+        type: basic#string
+      - name: rating
+        description: Rating 1-5
+        type: basic#number
+      - name: comment
+        description: Review comment
+        type: basic#string
+  - name: InventoryItem
+    description: Inventory entry
+    fields:
+      - name: sku
+        description: Product SKU
+        type: basic#string
+      - name: quantity
+        description: Quantity in stock
+        type: basic#number
+      - name: warehouse
+        description: Warehouse location
+        type: basic#string
+  - name: Supplier
+    description: A supplier of products
+    fields:
+      - name: id
+        description: Supplier identifier
+        type: basic#string
+      - name: name
+        description: Supplier name
+        type: basic#string
+      - name: contact_email
+        description: Contact email
+        type: basic#string
+      - name: active
+        description: Whether supplier is active
+        type: basic#boolean
