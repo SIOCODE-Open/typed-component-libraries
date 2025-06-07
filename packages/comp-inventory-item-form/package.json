@@ -1,0 +1,11 @@
+{
+    "name": "comp-inventory-item-form",
+    "description": "Form component for the Inventory Item interface",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "react": "*",
+        "classnames": "*"
+    }
+}

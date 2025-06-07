@@ -15,12 +15,28 @@ import {
 {{#each interfaces}}
 import { {{pascalCase name}}BadgeDemo } from "./{{kebabCase name}}-badge-demo";
 import { {{pascalCase name}}DataTableDemo } from "./{{kebabCase name}}-table-demo";
+import { {{pascalCase name}}CardDemo } from "./{{kebabCase name}}-card-demo";
+import { {{pascalCase name}}ListDemo } from "./{{kebabCase name}}-list-demo";
+import { {{pascalCase name}}DetailDemo } from "./{{kebabCase name}}-detail-demo";
+import { {{pascalCase name}}SummaryDemo } from "./{{kebabCase name}}-summary-demo";
+import { {{pascalCase name}}StatsDemo } from "./{{kebabCase name}}-stats-demo";
+import { {{pascalCase name}}TileDemo } from "./{{kebabCase name}}-tile-demo";
+import { {{pascalCase name}}ChipDemo } from "./{{kebabCase name}}-chip-demo";
+import { {{pascalCase name}}FormDemo } from "./{{kebabCase name}}-form-demo";
 {{/each}}
 
 const DEMOS = {
     {{#each interfaces}}
     {{pascalCase name}}BadgeDemo,
     {{pascalCase name}}DataTableDemo,
+    {{pascalCase name}}CardDemo,
+    {{pascalCase name}}ListDemo,
+    {{pascalCase name}}DetailDemo,
+    {{pascalCase name}}SummaryDemo,
+    {{pascalCase name}}StatsDemo,
+    {{pascalCase name}}TileDemo,
+    {{pascalCase name}}ChipDemo,
+    {{pascalCase name}}FormDemo,
     {{/each}}
 };
 
@@ -28,6 +44,14 @@ const DEMO_NAMES = {
     {{#each interfaces}}
     {{pascalCase name}}BadgeDemo: "{{capitalCase name}} Badge",
     {{pascalCase name}}DataTableDemo: "{{capitalCase name}} Data Table",
+    {{pascalCase name}}CardDemo: "{{capitalCase name}} Card",
+    {{pascalCase name}}ListDemo: "{{capitalCase name}} List",
+    {{pascalCase name}}DetailDemo: "{{capitalCase name}} Detail",
+    {{pascalCase name}}SummaryDemo: "{{capitalCase name}} Summary",
+    {{pascalCase name}}StatsDemo: "{{capitalCase name}} Stats",
+    {{pascalCase name}}TileDemo: "{{capitalCase name}} Tile",
+    {{pascalCase name}}ChipDemo: "{{capitalCase name}} Chip",
+    {{pascalCase name}}FormDemo: "{{capitalCase name}} Form",
     {{/each}}
 };
 

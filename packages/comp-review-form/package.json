@@ -1,0 +1,11 @@
+{
+    "name": "comp-review-form",
+    "description": "Form component for the Review interface",
+    "version": "0.0.1",
+    "private": true,
+    "main": "src/index.tsx",
+    "dependencies": {
+        "react": "*",
+        "classnames": "*"
+    }
+}

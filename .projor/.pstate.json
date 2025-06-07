@@ -2,117 +2,1615 @@
   "generatedSource": [
     {
       "filename": "packages/comp-build-badge/package.json",
-      "content": "{\n    \"name\": \"comp-build-badge\",\n    \"description\": \"Badge component for the Build interface\",\n    \"version\": \"0.0.1\",\n    \"private\": true,\n    \"main\": \"src/index.tsx\",\n    \"dependencies\": {\n        \"react\": \"*\",\n        \"classnames\": \"*\"\n    }\n}\n",
-      "contentHash": "8a4c2aa5379565bee817b8500c4449f4cc462223fdf21bbcb35eeff0c2830b9f",
-      "noWriteIfExists": false
+      "contentHash": "8a4c2aa5379565bee817b8500c4449f4cc462223fdf21bbcb35eeff0c2830b9f"
     },
     {
       "filename": "packages/comp-build-badge/src/index.tsx",
-      "content": "import classNames from \"classnames\";\n\n/** The field names available to be shown in the badge */\nexport type BuildBadgeField = \"buildNumber\" | \"date\" | \"status\";\n\n/** Props for the BuildBadge component */\nexport interface IBuildBadgeProps {\n    /** One build of a program */\n    value: {\n        /** The build number of the build */\n        buildNumber: number;\n        /** The date of the build */\n        date: string;\n        /** The status of the build */\n        status: string;\n    };\n\n    /** The field to show in the badge */\n    field: BuildBadgeField;\n\n    /** Whether the badge should be styled as a danger badge (red) */\n    danger?: boolean;\n\n    /** Whether the badge should be styled as a warning badge (yellow) */\n    warning?: boolean;\n\n    /** Whether the badge should be styled as an info badge (blue) */\n    info?: boolean;\n}\n\n/** The capitalized names of the fields */\nexport const BUILD_BADGE_FIELD_NAMES = {\n    buildNumber: \"Build Number\",\n    date: \"Date\",\n    status: \"Status\",\n};\n\n/** Shows a Build badge */\nexport function BuildBadge(props: IBuildBadgeProps) {\n    const valueClassname = classNames(\"text-white px-2 py-1 rounded-r-lg\", {\n        \"bg-red-500\": props.danger,\n        \"bg-yellow-500\": props.warning,\n        \"bg-blue-500\": props.info,\n        \"bg-green-500\": !props.danger && !props.warning && !props.info,\n    });\n    return (\n        <div className=\"flex flex-row justify-start items-center\">\n            <div className=\"bg-gray-600 text-white px-2 py-1 rounded-l-lg\">\n                {BUILD_BADGE_FIELD_NAMES[props.field]}\n            </div>\n            <div className={valueClassname}>{props.value[props.field]}</div>\n        </div>\n    );\n}\n",
-      "contentHash": "83ba3aafd695ed7420d2053b615d4ee7afc19ab7e6405943fff2f233ff350096",
-      "noWriteIfExists": false
+      "contentHash": "83ba3aafd695ed7420d2053b615d4ee7afc19ab7e6405943fff2f233ff350096"
     },
     {
       "filename": "packages/comp-build-badge/tsconfig.json",
-      "content": "{\n    \"compilerOptions\": {\n        \"target\": \"ES2015\",\n        \"module\": \"ES2015\",\n        \"moduleResolution\": \"Node\",\n        \"allowSyntheticDefaultImports\": true,\n        \"skipLibCheck\": true,\n        \"jsx\": \"react-native\"\n    },\n    \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"],\n    \"exclude\": [\"node_modules\"]\n}\n",
-      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869",
-      "noWriteIfExists": false
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-card/package.json",
+      "contentHash": "2c3a33a263a57eb7a551b73b8b5a835cfe27fc2dc2b4c72a06bfd706c812d4d8"
+    },
+    {
+      "filename": "packages/comp-build-card/src/index.tsx",
+      "contentHash": "c88efa6eaffb40698a15ab6503fdd9b2f8391d6938306ae6c4a785e1ffdc6363"
+    },
+    {
+      "filename": "packages/comp-build-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-chip/package.json",
+      "contentHash": "b7676216b0067ffe0a17d4f21c6a94dccac6d00cf32d3bcb3e1200697756ea4e"
+    },
+    {
+      "filename": "packages/comp-build-chip/src/index.tsx",
+      "contentHash": "967a51a02bf4f1635c30bd1bf21365e5c53df8a99c09bcaeeadf21423636ae8f"
+    },
+    {
+      "filename": "packages/comp-build-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-detail/package.json",
+      "contentHash": "cf4f2d694c79fdee7ce4d83154607e16ad94fb289d74c073f97362be4f7e4889"
+    },
+    {
+      "filename": "packages/comp-build-detail/src/index.tsx",
+      "contentHash": "f788f5908b73830878856c3ebdfb834954fe351b85daba9b76d70a3ef6f4faed"
+    },
+    {
+      "filename": "packages/comp-build-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-form/package.json",
+      "contentHash": "717341181f08e4009f1bcef7d50f6e45d5299668a777ad8ebb92e06d068e1a0f"
+    },
+    {
+      "filename": "packages/comp-build-form/src/index.tsx",
+      "contentHash": "ccccf36fe65356520a06f7ac723b1c17db22fea1d6add987b4fb94376d3cd742"
+    },
+    {
+      "filename": "packages/comp-build-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-list/package.json",
+      "contentHash": "d804e47c8de01a8cc968ce8d562f386d7d26ee5284457ee7abf138b13cb4b8f4"
+    },
+    {
+      "filename": "packages/comp-build-list/src/index.tsx",
+      "contentHash": "244d3ac1d3cfd84a4f5ea012fd35f77a173bf3f681f83cefcd098b8a545c9d95"
+    },
+    {
+      "filename": "packages/comp-build-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-stats/package.json",
+      "contentHash": "745c4f27940306f9c5d1d4cfca24b9f60ad35b9f11cb0e53a51a28dbf64a6b05"
+    },
+    {
+      "filename": "packages/comp-build-stats/src/index.tsx",
+      "contentHash": "4c78c398ce5c1ec20904f017e26a8827ec6f5ea00ea59afecd9e5161c0f84a2e"
+    },
+    {
+      "filename": "packages/comp-build-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-summary/package.json",
+      "contentHash": "6e930addc81f88ecf24e965278425537f379dee456b5bc9185d4da965e6a1e9e"
+    },
+    {
+      "filename": "packages/comp-build-summary/src/index.tsx",
+      "contentHash": "6943c0dccc0c8674883a478b1f6ebcbed4a3e5046d626a11f2030b7553e3092d"
+    },
+    {
+      "filename": "packages/comp-build-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
     },
     {
       "filename": "packages/comp-build-table/package.json",
-      "content": "{\n    \"name\": \"comp-build-table\",\n    \"description\": \"Data table component for the Build interface\",\n    \"version\": \"0.0.1\",\n    \"private\": true,\n    \"main\": \"src/index.tsx\",\n    \"dependencies\": {\n        \"react\": \"*\",\n        \"classnames\": \"*\"\n    }\n}\n",
-      "contentHash": "3609b3d0c0db14b9e1517ab6fd6a83443c37e6350b02311a7cc0579e6b903118",
-      "noWriteIfExists": false
+      "contentHash": "3609b3d0c0db14b9e1517ab6fd6a83443c37e6350b02311a7cc0579e6b903118"
     },
     {
       "filename": "packages/comp-build-table/src/index.tsx",
-      "content": "import classNames from \"classnames\";\n\n/** The columns available to be shown in the data table */\nexport type BuildDataTableColumn = \"buildNumber\" | \"date\" | \"status\";\n\n/** Props for the BuildDataTable component */\nexport interface IBuildDataTableProps {\n    /** One build of a program */\n    value: Array<{\n        /** The build number of the build */\n        buildNumber: number;\n        /** The date of the build */\n        date: string;\n        /** The status of the build */\n        status: string;\n    }>;\n\n    /** The columns to show in the data table */\n    columns: Array<BuildDataTableColumn>;\n}\n\n/** The capitalized names of the columns */\nexport const BUILD_DATA_TABLE_COLUMN_NAMES = {\n    buildNumber: \"Build Number\",\n    date: \"Date\",\n    status: \"Status\",\n};\n\n/** Shows a Build data table */\nexport function BuildDataTable(props: IBuildDataTableProps) {\n    const columnHeaderCells = props.columns.map((column, index) => (\n        <th key={index} className=\"p-2 border border-gray-600\">\n            {BUILD_DATA_TABLE_COLUMN_NAMES[column]}\n        </th>\n    ));\n    const dataRows = props.value.map((row, rowIndex) => (\n        <tr key={rowIndex}>\n            {props.columns.map((column, columnIndex) => (\n                <td key={columnIndex} className=\"p-2 border border-gray-800\">\n                    {row[column]}\n                </td>\n            ))}\n        </tr>\n    ));\n    return (\n        <table className=\"table-auto\">\n            <thead>\n                <tr>{columnHeaderCells}</tr>\n            </thead>\n            <tbody>{dataRows}</tbody>\n        </table>\n    );\n}\n",
-      "contentHash": "48dfd80a977434510241b9ad153399ee8f5704804605b810270a961b7929dcbf",
-      "noWriteIfExists": false
+      "contentHash": "48dfd80a977434510241b9ad153399ee8f5704804605b810270a961b7929dcbf"
     },
     {
       "filename": "packages/comp-build-table/tsconfig.json",
-      "content": "{\n    \"compilerOptions\": {\n        \"target\": \"ES2015\",\n        \"module\": \"ES2015\",\n        \"moduleResolution\": \"Node\",\n        \"allowSyntheticDefaultImports\": true,\n        \"skipLibCheck\": true,\n        \"jsx\": \"react-native\"\n    },\n    \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"],\n    \"exclude\": [\"node_modules\"]\n}\n",
-      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869",
-      "noWriteIfExists": false
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-build-tile/package.json",
+      "contentHash": "6458d181cd0a42738adb9cbf0493260560dd3b378ac106296134faed01d90d70"
+    },
+    {
+      "filename": "packages/comp-build-tile/src/index.tsx",
+      "contentHash": "a382fd1af948178a24d45a9e8ecb997f0982b1d49b35ac5e8ffb18f3aaece84d"
+    },
+    {
+      "filename": "packages/comp-build-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-badge/package.json",
+      "contentHash": "3f98e487d65251c0624bdc918bc291d292ecb7b9f4116a7e01c9531e4527cbe5"
+    },
+    {
+      "filename": "packages/comp-category-badge/src/index.tsx",
+      "contentHash": "6d20ebd11723e099a425169acf497535921ebbde28719ffb9439be7177bc52c3"
+    },
+    {
+      "filename": "packages/comp-category-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-card/package.json",
+      "contentHash": "dc8b14be14a9344fd4c6cc6298d5f06b127911d214d29bee5b09a8a38f0ea8ba"
+    },
+    {
+      "filename": "packages/comp-category-card/src/index.tsx",
+      "contentHash": "d3589b1a41a2b384aa4dfb04515915157ae6202a6bce7725b4e57ffd95f580b4"
+    },
+    {
+      "filename": "packages/comp-category-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-chip/package.json",
+      "contentHash": "40b562bf79e5774e6ce76f60fce221cb7c7b18cd97ffffcb6dc07b4bc19fda7d"
+    },
+    {
+      "filename": "packages/comp-category-chip/src/index.tsx",
+      "contentHash": "35acd2bc83a5541e200f050278f144963b5ab19e332875b4e2812760ea368b4e"
+    },
+    {
+      "filename": "packages/comp-category-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-detail/package.json",
+      "contentHash": "e11abae1c2d09ebd6dbf1e0c25011a8aa6c23bc4db8d4ddf800cd63bb0e32543"
+    },
+    {
+      "filename": "packages/comp-category-detail/src/index.tsx",
+      "contentHash": "c427e76961b26e58ad2607505dcb6b8a22350cf7eb1547eb4d57f065b2ef2d37"
+    },
+    {
+      "filename": "packages/comp-category-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-form/package.json",
+      "contentHash": "9decd6f0b0079dc1c8f9070f7e889a57c72355d2657efa4141c6e010e1aee361"
+    },
+    {
+      "filename": "packages/comp-category-form/src/index.tsx",
+      "contentHash": "d41dfa60155c588809a288b3e416d2c0515af165f2ec54d855259f874b0901a0"
+    },
+    {
+      "filename": "packages/comp-category-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-list/package.json",
+      "contentHash": "5a8b0f853bfc4a88abe0ed35bc243f5770733bdcf8eb3dcaa898050e569ba61a"
+    },
+    {
+      "filename": "packages/comp-category-list/src/index.tsx",
+      "contentHash": "47a695ad25dd3ef1f70f72d982bdd88339eeb8dfb060a2badaa3474a0e1d7a3f"
+    },
+    {
+      "filename": "packages/comp-category-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-stats/package.json",
+      "contentHash": "e7e0b1e449f6f725f7cebafc65161f7b2b0eff8d90436800c5bd02b6184e2fa7"
+    },
+    {
+      "filename": "packages/comp-category-stats/src/index.tsx",
+      "contentHash": "a628b4f81389cea53e353d94be83b88c7ae90cabe6d72d13047b6e18ec286770"
+    },
+    {
+      "filename": "packages/comp-category-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-summary/package.json",
+      "contentHash": "54f31735f06cb386305ab13ff102b4b5c7bc9480ef4d6506880b0532bd347b6a"
+    },
+    {
+      "filename": "packages/comp-category-summary/src/index.tsx",
+      "contentHash": "51e9fdc02b5599031baf949bf9ea23b5c0aacf35cd4db4cfd600cb59205cc4cd"
+    },
+    {
+      "filename": "packages/comp-category-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-table/package.json",
+      "contentHash": "81ec5795e508f5bb8bc7ef45a93760c6510d5036a58a413ba2d90a3a922bae2f"
+    },
+    {
+      "filename": "packages/comp-category-table/src/index.tsx",
+      "contentHash": "ccecaf8d5e337e0c21c5916bef0a4c92e4f94c51e34276e6aecc26b316ad35b5"
+    },
+    {
+      "filename": "packages/comp-category-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-category-tile/package.json",
+      "contentHash": "0ba17ad939f93182c9ec7e090f7114ae12eb28220ab78e8968759f1525457438"
+    },
+    {
+      "filename": "packages/comp-category-tile/src/index.tsx",
+      "contentHash": "430c42dc77bc7e8cda2cd3373413f345259465748abb5d8a87188ce453c79a09"
+    },
+    {
+      "filename": "packages/comp-category-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-badge/package.json",
+      "contentHash": "9616a7dd8785f86e4218e36f0b0f2ee6569e3be56c363641f9d334dc47ddb51c"
+    },
+    {
+      "filename": "packages/comp-customer-badge/src/index.tsx",
+      "contentHash": "60965731b029ee268a1e5ac902d78900a10a0ffb383e77f35fb9a78104850820"
+    },
+    {
+      "filename": "packages/comp-customer-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-card/package.json",
+      "contentHash": "99fc373ef369216f06786c559145ef3b1476b5a2201a0918fd838be59f6b95fb"
+    },
+    {
+      "filename": "packages/comp-customer-card/src/index.tsx",
+      "contentHash": "62132ab69023d6c39d11daf91e42a2de0a5b5e75d0edfe968e7e947dd55698b8"
+    },
+    {
+      "filename": "packages/comp-customer-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-chip/package.json",
+      "contentHash": "3f4f313800a1663186ae5e064f2ae199e9770444aacff443b8b9e77f63364a40"
+    },
+    {
+      "filename": "packages/comp-customer-chip/src/index.tsx",
+      "contentHash": "2b2d2c3875d113ce19ae4e28e4e1ac685e53be32e90b1b1984acf91a9145339b"
+    },
+    {
+      "filename": "packages/comp-customer-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-detail/package.json",
+      "contentHash": "a36a8c90f3221f2e79a203c38a6ba441cc9189706a539c4e2873c021d1832305"
+    },
+    {
+      "filename": "packages/comp-customer-detail/src/index.tsx",
+      "contentHash": "6701d3e80f4632868247b83aba479eddd5e8cff8b49d6d8bd4bebae46bdf5759"
+    },
+    {
+      "filename": "packages/comp-customer-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-form/package.json",
+      "contentHash": "9a84087d27a1a71ffca3958b32a016d19a24c78512e467c4442b0424d81e9ea2"
+    },
+    {
+      "filename": "packages/comp-customer-form/src/index.tsx",
+      "contentHash": "9e841896e92af6e93b7032a707c71138df25610e63179dd0e2a80f180a5d2220"
+    },
+    {
+      "filename": "packages/comp-customer-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-list/package.json",
+      "contentHash": "3526d573cd4dcc2da27c88a746df5b06d37980de73ee506ebe63eb78dc581eda"
+    },
+    {
+      "filename": "packages/comp-customer-list/src/index.tsx",
+      "contentHash": "24041ad09062566433a55268cc85dce60dd2cc833f27584f03b24f3b4aeaa6ed"
+    },
+    {
+      "filename": "packages/comp-customer-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-stats/package.json",
+      "contentHash": "2601447298922a07872f1d3188122dce71187cbeb21189cb9df8862582eb79d4"
+    },
+    {
+      "filename": "packages/comp-customer-stats/src/index.tsx",
+      "contentHash": "9cb92e26bf248a452b107f5bf940158eeb06c2d7a265b014e7a70a5cab8ba237"
+    },
+    {
+      "filename": "packages/comp-customer-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-summary/package.json",
+      "contentHash": "fba005c147ed794e39755bf4f2babae5b00edf136a5113dee7f649a6ccd5208c"
+    },
+    {
+      "filename": "packages/comp-customer-summary/src/index.tsx",
+      "contentHash": "7a1dd619052e998cc115dd0dae2a1e1143effccd27325599197192fc4de240ac"
+    },
+    {
+      "filename": "packages/comp-customer-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-table/package.json",
+      "contentHash": "53b668a5f6b0bc45cdc5b8e255a64cfb62ee2590543a21e9ce806150c6cdb2a3"
+    },
+    {
+      "filename": "packages/comp-customer-table/src/index.tsx",
+      "contentHash": "1624d7f06834840378671a69d1d058ae148ff00f450e6a44c4f78d155092c781"
+    },
+    {
+      "filename": "packages/comp-customer-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-customer-tile/package.json",
+      "contentHash": "b06a1d4af7c29d9b9fc17e33a0eb1ff3a65e2be41e81fba5c263dcccaa9904b2"
+    },
+    {
+      "filename": "packages/comp-customer-tile/src/index.tsx",
+      "contentHash": "3d9b4f40ad231baed1e587c5b7f40fb3fa69145d07d3b6679c0b30ff77a5092c"
+    },
+    {
+      "filename": "packages/comp-customer-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-badge/package.json",
+      "contentHash": "4f57343479f2fea5c772e051197a77c58584eadeef6ac65c17535d43871d981f"
+    },
+    {
+      "filename": "packages/comp-inventory-item-badge/src/index.tsx",
+      "contentHash": "c9a8dd8f1b3bd5c425e5324040b0677a2ac2af6f43ed7f8e8e22e6aff28843a4"
+    },
+    {
+      "filename": "packages/comp-inventory-item-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-card/package.json",
+      "contentHash": "7e273647d53df3d79256f08a80c599a3b138d8e96249e46efbcd82e6e4fafad2"
+    },
+    {
+      "filename": "packages/comp-inventory-item-card/src/index.tsx",
+      "contentHash": "20cb3c3c5eada8c15fcaab29fcf697cf7925267ff8b8503720ec31b9fa051114"
+    },
+    {
+      "filename": "packages/comp-inventory-item-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-chip/package.json",
+      "contentHash": "a23d29c7513676cab5197de50426da2c0560c526c0e3b99299573b76e12f937b"
+    },
+    {
+      "filename": "packages/comp-inventory-item-chip/src/index.tsx",
+      "contentHash": "f63cf55ac93b989a212b540f27404f82a03e9a14c40cafceb50cbe654b8fca73"
+    },
+    {
+      "filename": "packages/comp-inventory-item-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-detail/package.json",
+      "contentHash": "5a5cc35371abf00adbcdb82c3c2b1ec9b17b2e5e581c07a0bbfefb298c15360e"
+    },
+    {
+      "filename": "packages/comp-inventory-item-detail/src/index.tsx",
+      "contentHash": "dbd199eac081d9110c05e84d9566eea14eb242dcc013f66aecc242908ed3b6df"
+    },
+    {
+      "filename": "packages/comp-inventory-item-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-form/package.json",
+      "contentHash": "6f52f84978d23d2192502e425215201d05606ed25b87ab24482f356b54157e98"
+    },
+    {
+      "filename": "packages/comp-inventory-item-form/src/index.tsx",
+      "contentHash": "dc8cbd4f19a9ec5df17d3f55f74a24998ad7c13a83f59d0bf35b6e7c46a5c409"
+    },
+    {
+      "filename": "packages/comp-inventory-item-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-list/package.json",
+      "contentHash": "16723a7ab677c076a9da091424ae985c23c2de95cd56ad8daa5d2ab70ee9626b"
+    },
+    {
+      "filename": "packages/comp-inventory-item-list/src/index.tsx",
+      "contentHash": "741f21c996260fcf9478b3ef2ba119df29d926a9c964133d3f3ca3230e4893cb"
+    },
+    {
+      "filename": "packages/comp-inventory-item-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-stats/package.json",
+      "contentHash": "b2769f63584af096ad2f214aea012fad7cc38c0048b84da3f10bcdf595c67cb1"
+    },
+    {
+      "filename": "packages/comp-inventory-item-stats/src/index.tsx",
+      "contentHash": "bd34428369fdbee32b073af5e205947451aea8c6db3478e017b2828a5b36c014"
+    },
+    {
+      "filename": "packages/comp-inventory-item-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-summary/package.json",
+      "contentHash": "a329782270207fdee92129e7e02dbdb6317498398507957b3a6982926a4e690e"
+    },
+    {
+      "filename": "packages/comp-inventory-item-summary/src/index.tsx",
+      "contentHash": "cd57aa50a590899f06b395912641f787317ab0e098a0fd98c44ba9f886d13a4a"
+    },
+    {
+      "filename": "packages/comp-inventory-item-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-table/package.json",
+      "contentHash": "bb4cc71ce6416a9d82ff1d2556f5f0442544bdb4c5ae1c40caebca8b320ea892"
+    },
+    {
+      "filename": "packages/comp-inventory-item-table/src/index.tsx",
+      "contentHash": "f117c6acfa825275dd8ad83d8ce2e3ddb4369db53675ce45c279477b7c953395"
+    },
+    {
+      "filename": "packages/comp-inventory-item-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-inventory-item-tile/package.json",
+      "contentHash": "d6014df4e351cb1a6c7ea5d2266d15a585a54ed311d4a0b8bfe210a9be9c6ca9"
+    },
+    {
+      "filename": "packages/comp-inventory-item-tile/src/index.tsx",
+      "contentHash": "6e66417e76c576a34e141fb3a3f650f2967b2b7f8d2e1d3126d16c38187a401b"
+    },
+    {
+      "filename": "packages/comp-inventory-item-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-badge/package.json",
+      "contentHash": "7abafe5e636f240ec138a468765a9f2e9be62dc410183c4934987d066ae3bb18"
+    },
+    {
+      "filename": "packages/comp-order-badge/src/index.tsx",
+      "contentHash": "6ec684f4e40675bf6a4ebbc06e2e6b78854ca57a6d68a64c233c92329690e68d"
+    },
+    {
+      "filename": "packages/comp-order-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-card/package.json",
+      "contentHash": "b0abc41269cf7de3c3280f125db8cfc464c941b52fa39ed7f36d13cdcbfdbc0d"
+    },
+    {
+      "filename": "packages/comp-order-card/src/index.tsx",
+      "contentHash": "66de51d9d3cd9cce0cc479a5b9d26e9cec0d2c788487c3bd8f836a2a0f8751e7"
+    },
+    {
+      "filename": "packages/comp-order-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-chip/package.json",
+      "contentHash": "25bd7044f2b6ce4031752e3a7eb61e84f1487452dade4c2a0dfffe1ddf0fe9dd"
+    },
+    {
+      "filename": "packages/comp-order-chip/src/index.tsx",
+      "contentHash": "5e0e7caa6d104778f6f9abc083033e118305b75cf9b96f30bde75193aac3d07e"
+    },
+    {
+      "filename": "packages/comp-order-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-detail/package.json",
+      "contentHash": "ee56896a121d039bdd47521902a0dae0054157406fb3f8ad9ca69be6d791ac36"
+    },
+    {
+      "filename": "packages/comp-order-detail/src/index.tsx",
+      "contentHash": "91c55a923ee0e176127ce0a2e294b22892a71035f205e2676ee7a43dff47519a"
+    },
+    {
+      "filename": "packages/comp-order-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-form/package.json",
+      "contentHash": "ed5fb3da0dcbd9859811083078832d0abd6eeb2f883446a432fce193c029ee2a"
+    },
+    {
+      "filename": "packages/comp-order-form/src/index.tsx",
+      "contentHash": "09c9c4811836a0201e59ad71158c595a7c6a7787163483e02864365678486569"
+    },
+    {
+      "filename": "packages/comp-order-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-list/package.json",
+      "contentHash": "6d6bf176a6cd52b4203edb3025947c76137fb19e0e68b141bb319021f7e23747"
+    },
+    {
+      "filename": "packages/comp-order-list/src/index.tsx",
+      "contentHash": "d57e1a2f3e0a8ef8b162e1e11afdd0bb970530da4b3dca4fe3545df2e0e4d2b7"
+    },
+    {
+      "filename": "packages/comp-order-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-stats/package.json",
+      "contentHash": "8002c15d322c588bdfef19173a92691a7633c1ecb7cdea830f4faa2eaa6cf4e7"
+    },
+    {
+      "filename": "packages/comp-order-stats/src/index.tsx",
+      "contentHash": "94f5ddd90875ba881996a8c22a16aee3f519ba31f94678c21760cc74b2dbdb13"
+    },
+    {
+      "filename": "packages/comp-order-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-summary/package.json",
+      "contentHash": "b790e6b204d6747e06939bb887ff61d4f1f784487c61ef3db6447d1b1b20c945"
+    },
+    {
+      "filename": "packages/comp-order-summary/src/index.tsx",
+      "contentHash": "128d2292c6cf4c90a4800281c532de9658a7bb1102b2693241e34f1f7853d12c"
+    },
+    {
+      "filename": "packages/comp-order-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-table/package.json",
+      "contentHash": "ee16c7922518205f6ba527dd2ca0857107d353fc4af27cc8028f8d929c276bae"
+    },
+    {
+      "filename": "packages/comp-order-table/src/index.tsx",
+      "contentHash": "2671d8e2d2f5dd3da88e2eb5f9fcf3f628e4306f411989b31ad4cffdf74bb31b"
+    },
+    {
+      "filename": "packages/comp-order-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-order-tile/package.json",
+      "contentHash": "62623085d3636905b20bf94ea8be7310c210fdcad937d8bc5dce6256e130453e"
+    },
+    {
+      "filename": "packages/comp-order-tile/src/index.tsx",
+      "contentHash": "5994c7a55e9ba841726ae9a1b87061a1aaba0f47f3f7542afbd26cd7373308a9"
+    },
+    {
+      "filename": "packages/comp-order-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
     },
     {
       "filename": "packages/comp-product-badge/package.json",
-      "content": "{\n    \"name\": \"comp-product-badge\",\n    \"description\": \"Badge component for the Product interface\",\n    \"version\": \"0.0.1\",\n    \"private\": true,\n    \"main\": \"src/index.tsx\",\n    \"dependencies\": {\n        \"react\": \"*\",\n        \"classnames\": \"*\"\n    }\n}\n",
-      "contentHash": "c59e1c9670e9659e691641d182a04505c315121e996cf1b8337c1063c6df1120",
-      "noWriteIfExists": false
+      "contentHash": "c59e1c9670e9659e691641d182a04505c315121e996cf1b8337c1063c6df1120"
     },
     {
       "filename": "packages/comp-product-badge/src/index.tsx",
-      "content": "import classNames from \"classnames\";\n\n/** The field names available to be shown in the badge */\nexport type ProductBadgeField =\n    | \"sku\"\n    | \"name\"\n    | \"description\"\n    | \"price\"\n    | \"isAvailable\";\n\n/** Props for the ProductBadge component */\nexport interface IProductBadgeProps {\n    /** A product that is sold in a webshop */\n    value: {\n        /** The stock keeping unit */\n        sku: string;\n        /** The name of the product */\n        name: string;\n        /** A description of the product */\n        description: string;\n        /** The price of the product */\n        price: number;\n        /** Whether the product is available */\n        isAvailable: boolean;\n    };\n\n    /** The field to show in the badge */\n    field: ProductBadgeField;\n\n    /** Whether the badge should be styled as a danger badge (red) */\n    danger?: boolean;\n\n    /** Whether the badge should be styled as a warning badge (yellow) */\n    warning?: boolean;\n\n    /** Whether the badge should be styled as an info badge (blue) */\n    info?: boolean;\n}\n\n/** The capitalized names of the fields */\nexport const PRODUCT_BADGE_FIELD_NAMES = {\n    sku: \"Sku\",\n    name: \"Name\",\n    description: \"Description\",\n    price: \"Price\",\n    isAvailable: \"Is Available\",\n};\n\n/** Shows a Product badge */\nexport function ProductBadge(props: IProductBadgeProps) {\n    const valueClassname = classNames(\"text-white px-2 py-1 rounded-r-lg\", {\n        \"bg-red-500\": props.danger,\n        \"bg-yellow-500\": props.warning,\n        \"bg-blue-500\": props.info,\n        \"bg-green-500\": !props.danger && !props.warning && !props.info,\n    });\n    return (\n        <div className=\"flex flex-row justify-start items-center\">\n            <div className=\"bg-gray-600 text-white px-2 py-1 rounded-l-lg\">\n                {PRODUCT_BADGE_FIELD_NAMES[props.field]}\n            </div>\n            <div className={valueClassname}>{props.value[props.field]}</div>\n        </div>\n    );\n}\n",
-      "contentHash": "3f4384048d77356d0eca4a3d19527a6067dfde7b024382c787e51396f124c471",
-      "noWriteIfExists": false
+      "contentHash": "3f4384048d77356d0eca4a3d19527a6067dfde7b024382c787e51396f124c471"
     },
     {
       "filename": "packages/comp-product-badge/tsconfig.json",
-      "content": "{\n    \"compilerOptions\": {\n        \"target\": \"ES2015\",\n        \"module\": \"ES2015\",\n        \"moduleResolution\": \"Node\",\n        \"allowSyntheticDefaultImports\": true,\n        \"skipLibCheck\": true,\n        \"jsx\": \"react-native\"\n    },\n    \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"],\n    \"exclude\": [\"node_modules\"]\n}\n",
-      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869",
-      "noWriteIfExists": false
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-card/package.json",
+      "contentHash": "bcb68cb81f33e5e606b6adc2fab47de7deb3dcb0683e55500012b5da26d8a83f"
+    },
+    {
+      "filename": "packages/comp-product-card/src/index.tsx",
+      "contentHash": "38f04dd0c1dee1b8549c65743e9f9f50d70bf7c0664ed7e9b3cb357ed7afcfba"
+    },
+    {
+      "filename": "packages/comp-product-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-chip/package.json",
+      "contentHash": "811fa4449249a744794a1990ad485de9613352d855f7b5de48090d68949957bf"
+    },
+    {
+      "filename": "packages/comp-product-chip/src/index.tsx",
+      "contentHash": "0cb7a4a5df3e6614079fa20397bcf7503c5da937b2ab21a9f6e1d5a20af46fde"
+    },
+    {
+      "filename": "packages/comp-product-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-detail/package.json",
+      "contentHash": "af08bbdc898c87a83052890359c5fad16a807ee57adb4a2433cbc62389c97f6a"
+    },
+    {
+      "filename": "packages/comp-product-detail/src/index.tsx",
+      "contentHash": "f3e0840d564d19a3f2b8d78b2e8569fe392aee9b29b1827f929d05ec712229c8"
+    },
+    {
+      "filename": "packages/comp-product-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-form/package.json",
+      "contentHash": "9bda8f58776482a39fb8b0f5f01b482d644fc3f83d1d8726c5697fbb3f3bd171"
+    },
+    {
+      "filename": "packages/comp-product-form/src/index.tsx",
+      "contentHash": "0466e70f968293f0b9c66371390d4ee7d075117a76c2dfc7f038472107fc8d82"
+    },
+    {
+      "filename": "packages/comp-product-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-list/package.json",
+      "contentHash": "0edf810a81253e9e7c9b1cb1c6e13c1ffac74a41e29748f168e752d3adc5a708"
+    },
+    {
+      "filename": "packages/comp-product-list/src/index.tsx",
+      "contentHash": "b6a15533f40e86addcbb2fd3e02e6925490fbbfd6a880d3c49009f240da26815"
+    },
+    {
+      "filename": "packages/comp-product-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-stats/package.json",
+      "contentHash": "b83c9e7515bd19d63b584a90a90578419ddd16597831bc64907c03fa793ef118"
+    },
+    {
+      "filename": "packages/comp-product-stats/src/index.tsx",
+      "contentHash": "c1c137e1ceb051e8c27a98f934ef1957e69e14dc4d42b9a161978c5cb2067d04"
+    },
+    {
+      "filename": "packages/comp-product-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-summary/package.json",
+      "contentHash": "096db13a4f6b9f79210bb385a0e6659243b7e3b15bed771a18406bea15f22d1e"
+    },
+    {
+      "filename": "packages/comp-product-summary/src/index.tsx",
+      "contentHash": "88ee434113bac459fedc198649f3b97de635fde6acc6f59ef81d542f4bba302d"
+    },
+    {
+      "filename": "packages/comp-product-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
     },
     {
       "filename": "packages/comp-product-table/package.json",
-      "content": "{\n    \"name\": \"comp-product-table\",\n    \"description\": \"Data table component for the Product interface\",\n    \"version\": \"0.0.1\",\n    \"private\": true,\n    \"main\": \"src/index.tsx\",\n    \"dependencies\": {\n        \"react\": \"*\",\n        \"classnames\": \"*\"\n    }\n}\n",
-      "contentHash": "747ab412183b06694e5ef03f82fcb9c6d0f7974015328d7c66a9fa5b2c7b586e",
-      "noWriteIfExists": false
+      "contentHash": "747ab412183b06694e5ef03f82fcb9c6d0f7974015328d7c66a9fa5b2c7b586e"
     },
     {
       "filename": "packages/comp-product-table/src/index.tsx",
-      "content": "import classNames from \"classnames\";\n\n/** The columns available to be shown in the data table */\nexport type ProductDataTableColumn =\n    | \"sku\"\n    | \"name\"\n    | \"description\"\n    | \"price\"\n    | \"isAvailable\";\n\n/** Props for the ProductDataTable component */\nexport interface IProductDataTableProps {\n    /** A product that is sold in a webshop */\n    value: Array<{\n        /** The stock keeping unit */\n        sku: string;\n        /** The name of the product */\n        name: string;\n        /** A description of the product */\n        description: string;\n        /** The price of the product */\n        price: number;\n        /** Whether the product is available */\n        isAvailable: boolean;\n    }>;\n\n    /** The columns to show in the data table */\n    columns: Array<ProductDataTableColumn>;\n}\n\n/** The capitalized names of the columns */\nexport const PRODUCT_DATA_TABLE_COLUMN_NAMES = {\n    sku: \"Sku\",\n    name: \"Name\",\n    description: \"Description\",\n    price: \"Price\",\n    isAvailable: \"Is Available\",\n};\n\n/** Shows a Product data table */\nexport function ProductDataTable(props: IProductDataTableProps) {\n    const columnHeaderCells = props.columns.map((column, index) => (\n        <th key={index} className=\"p-2 border border-gray-600\">\n            {PRODUCT_DATA_TABLE_COLUMN_NAMES[column]}\n        </th>\n    ));\n    const dataRows = props.value.map((row, rowIndex) => (\n        <tr key={rowIndex}>\n            {props.columns.map((column, columnIndex) => (\n                <td key={columnIndex} className=\"p-2 border border-gray-800\">\n                    {row[column]}\n                </td>\n            ))}\n        </tr>\n    ));\n    return (\n        <table className=\"table-auto\">\n            <thead>\n                <tr>{columnHeaderCells}</tr>\n            </thead>\n            <tbody>{dataRows}</tbody>\n        </table>\n    );\n}\n",
-      "contentHash": "edf35f1297bec9d3385bb4d7d390547a902b9aeb4770d1dbff2f3c869d83bb75",
-      "noWriteIfExists": false
+      "contentHash": "edf35f1297bec9d3385bb4d7d390547a902b9aeb4770d1dbff2f3c869d83bb75"
     },
     {
       "filename": "packages/comp-product-table/tsconfig.json",
-      "content": "{\n    \"compilerOptions\": {\n        \"target\": \"ES2015\",\n        \"module\": \"ES2015\",\n        \"moduleResolution\": \"Node\",\n        \"allowSyntheticDefaultImports\": true,\n        \"skipLibCheck\": true,\n        \"jsx\": \"react-native\"\n    },\n    \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"],\n    \"exclude\": [\"node_modules\"]\n}\n",
-      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869",
-      "noWriteIfExists": false
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-product-tile/package.json",
+      "contentHash": "c2da8b6916c8e8f4c090965be129245edfdd4ed22ea3d2b19f593d21d32f24f3"
+    },
+    {
+      "filename": "packages/comp-product-tile/src/index.tsx",
+      "contentHash": "0d7ab58b57746072357ba2651f62edcc50fe8745a64385702b006ef480a26435"
+    },
+    {
+      "filename": "packages/comp-product-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-badge/package.json",
+      "contentHash": "fe833873a3e183b94e4c20f0acc8a252a9c0b08c012f7911ca07c3be861d95f0"
+    },
+    {
+      "filename": "packages/comp-review-badge/src/index.tsx",
+      "contentHash": "fff040bfb0dff4044cc7698a3628eb395a53f4a58fd692617a7ad4f46723d157"
+    },
+    {
+      "filename": "packages/comp-review-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-card/package.json",
+      "contentHash": "84b77daed7b31c3e6fba8f1e304e19129ed65efb6374596dca88eaaa209bca6b"
+    },
+    {
+      "filename": "packages/comp-review-card/src/index.tsx",
+      "contentHash": "9b9b35f0d279d5e31b798533e361626ead5fdafa79f16f16207341e71d74789d"
+    },
+    {
+      "filename": "packages/comp-review-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-chip/package.json",
+      "contentHash": "73b66cad535bbb12e838d5a109a8cada323e3dc96bc25f8d29f46c02d3858cb7"
+    },
+    {
+      "filename": "packages/comp-review-chip/src/index.tsx",
+      "contentHash": "6126aabf42721695dc3713bd3d0618b8b349ee621647dd8283b2a5cc8d9894b6"
+    },
+    {
+      "filename": "packages/comp-review-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-detail/package.json",
+      "contentHash": "e3c9906707b8725ba2b5be86b60760b1595bfb2668f4c8712e65ee5b3f721a1c"
+    },
+    {
+      "filename": "packages/comp-review-detail/src/index.tsx",
+      "contentHash": "7ee5a233b04a6960d75a35b9236ccbb9bd939b229911dffe756abfa3923fcf17"
+    },
+    {
+      "filename": "packages/comp-review-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-form/package.json",
+      "contentHash": "82939a1fd43951f0d6a3a7e64557d0dfb2c0b986569a325aed8b0ec9908f908b"
+    },
+    {
+      "filename": "packages/comp-review-form/src/index.tsx",
+      "contentHash": "d2cda82b62480e2f2d7571017e611c2d31dde32ed349a94c087b622968968146"
+    },
+    {
+      "filename": "packages/comp-review-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-list/package.json",
+      "contentHash": "3dc1a5df0d1a224d2687442c11ef4e34c273904c6af833df3a2e8a1439ea6ed7"
+    },
+    {
+      "filename": "packages/comp-review-list/src/index.tsx",
+      "contentHash": "b6b2d4ddaaeebb2e1d2835cf32521a216839f9274f720b508435f18a2fef3ef8"
+    },
+    {
+      "filename": "packages/comp-review-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-stats/package.json",
+      "contentHash": "3423721bac592c1fe9622c2111cb74cea1b88ae7a790b997fe5232ed856056b2"
+    },
+    {
+      "filename": "packages/comp-review-stats/src/index.tsx",
+      "contentHash": "a1a4a2b8d4f1e66226a2b19c8d85d43765b1dd2aa4940725d2bdce0d521fe0e6"
+    },
+    {
+      "filename": "packages/comp-review-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-summary/package.json",
+      "contentHash": "6f315db160ed3794109a014a41d8a124dc42c165d474f1b8ec5c1d830fcc5f95"
+    },
+    {
+      "filename": "packages/comp-review-summary/src/index.tsx",
+      "contentHash": "59b61c1b17278de2b4b668435a7bc614eafdeea41ffaa181bd84cddb7fea8d19"
+    },
+    {
+      "filename": "packages/comp-review-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-table/package.json",
+      "contentHash": "e4045914fabc54f4877d140ac823140b147bbfcdfe14cff59143a510ad1604c9"
+    },
+    {
+      "filename": "packages/comp-review-table/src/index.tsx",
+      "contentHash": "e4435bea1c50e203cddc0d8feff14dfc364fa64306edcfbf311f9da7138800f1"
+    },
+    {
+      "filename": "packages/comp-review-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-review-tile/package.json",
+      "contentHash": "dab03ade903ad88fad562507831c677b92c140f5e14adb997875e56c46e7f69c"
+    },
+    {
+      "filename": "packages/comp-review-tile/src/index.tsx",
+      "contentHash": "337a435a9a109756a70d33b07101e3027cf972db3b9d89d58a4a58f69ea934b8"
+    },
+    {
+      "filename": "packages/comp-review-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-badge/package.json",
+      "contentHash": "89b76561c34aac78aab0456248caea357f2068215f18c5692561bda55a512713"
+    },
+    {
+      "filename": "packages/comp-supplier-badge/src/index.tsx",
+      "contentHash": "656a7c446eb2f25e5e16d86400033ff0bfa646d639fcd189b2e1761b4bff5916"
+    },
+    {
+      "filename": "packages/comp-supplier-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-card/package.json",
+      "contentHash": "009637471e89cb2df4549b88da6afc15dbd26d13ffb57465e2173fa6b8ba5933"
+    },
+    {
+      "filename": "packages/comp-supplier-card/src/index.tsx",
+      "contentHash": "6c3b09f3f99754f98232000c69b49024c1ce9273b87fcbde27ee9eddc8cc042c"
+    },
+    {
+      "filename": "packages/comp-supplier-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-chip/package.json",
+      "contentHash": "de4a1917985cd6529db4bedfe7d806d2c9ef7796f3448f4791b8f50cd10ddb48"
+    },
+    {
+      "filename": "packages/comp-supplier-chip/src/index.tsx",
+      "contentHash": "bfa8c15d081ee206da1be9cc0cc0aad238a6301482f50f3d0a1fbbde334fe75e"
+    },
+    {
+      "filename": "packages/comp-supplier-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-detail/package.json",
+      "contentHash": "3cbea9026f44354e6c53ddfe773e535ee39226292fedbbe3eee1763a90de9074"
+    },
+    {
+      "filename": "packages/comp-supplier-detail/src/index.tsx",
+      "contentHash": "5207bccc4cb6e9150394947972515e1b2e4e0c8723efcd426bd4eebad0d6d2dc"
+    },
+    {
+      "filename": "packages/comp-supplier-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-form/package.json",
+      "contentHash": "e7cb42de5cb1daa206bbd7a8e1990cfca2c85e54c96fffe6bb0610bd895e846d"
+    },
+    {
+      "filename": "packages/comp-supplier-form/src/index.tsx",
+      "contentHash": "ad61bdb07714d4c8fd22464039d00cdfe49b8b6af436b055ac1c88b6e70ca18a"
+    },
+    {
+      "filename": "packages/comp-supplier-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-list/package.json",
+      "contentHash": "00199d287e1a17f7ecfb165b84e1ef652b90948415f4249787c820b6706e7e4f"
+    },
+    {
+      "filename": "packages/comp-supplier-list/src/index.tsx",
+      "contentHash": "2d753d331fcbe9c4c2a6c864489d628c428c7289ab72913270ec6c0e2837158e"
+    },
+    {
+      "filename": "packages/comp-supplier-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-stats/package.json",
+      "contentHash": "eb7635c27cc6a191e39499ba583235d42d4b4ba3e75dc09a302ae5e429accc8e"
+    },
+    {
+      "filename": "packages/comp-supplier-stats/src/index.tsx",
+      "contentHash": "91dcffb921a96f8f488d2eab598fd5ca1d719c02c6c2d86924ef97e9b11244c1"
+    },
+    {
+      "filename": "packages/comp-supplier-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-summary/package.json",
+      "contentHash": "c33e877ac9366c63401a2b152d3c167e7334c7f81198db3c053e88b893bf2e66"
+    },
+    {
+      "filename": "packages/comp-supplier-summary/src/index.tsx",
+      "contentHash": "a7e390a7c770c16da982bce777a91b6bb0b4186f89e6c0a43a86758d257d256a"
+    },
+    {
+      "filename": "packages/comp-supplier-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-table/package.json",
+      "contentHash": "72988f7adeb5dfabd387e4b7b40ec1a12614607854571721841ffc7ecb10977f"
+    },
+    {
+      "filename": "packages/comp-supplier-table/src/index.tsx",
+      "contentHash": "8f4d45a65082990e91f18b2919b872cbea4a2d4d98d8aedb1d6c68f707e8b797"
+    },
+    {
+      "filename": "packages/comp-supplier-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-supplier-tile/package.json",
+      "contentHash": "16734649e2bc276860b235f255d754ed76674fe8376a1ce055c81d6bc3e8524c"
+    },
+    {
+      "filename": "packages/comp-supplier-tile/src/index.tsx",
+      "contentHash": "2a084219df1dc2833326b40304abb935d179f40f751ccf006411f1473e0c2cc2"
+    },
+    {
+      "filename": "packages/comp-supplier-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-badge/package.json",
+      "contentHash": "67aaff70d1b4118c2f3ee7e458d07189634eb827d93aff5d897b3c397074002c"
+    },
+    {
+      "filename": "packages/comp-transaction-badge/src/index.tsx",
+      "contentHash": "b75989c054ba4b7cef4c5e27747833b9f692cd4b5c761e1f5902cc86b327b2c0"
+    },
+    {
+      "filename": "packages/comp-transaction-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-card/package.json",
+      "contentHash": "c6b53be2bbbe1db7ae543f474e77681972f38a4ecb4386b302e05c42af2c6d4d"
+    },
+    {
+      "filename": "packages/comp-transaction-card/src/index.tsx",
+      "contentHash": "61ed00244eb058ccee548ade93047d4835f48edce4943b530dc001a566be8480"
+    },
+    {
+      "filename": "packages/comp-transaction-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-chip/package.json",
+      "contentHash": "6d7621c4e4e2a023ebfff58d377db10ac425e18a5382637a1353998ce1ce40eb"
+    },
+    {
+      "filename": "packages/comp-transaction-chip/src/index.tsx",
+      "contentHash": "4aa063d9ddb1612b737d153e26fe6dbb5c406fa1c9efcd0f50a166201fe68fd6"
+    },
+    {
+      "filename": "packages/comp-transaction-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-detail/package.json",
+      "contentHash": "3060187fedef009b1de1bd689e79ffbb29bb2c98d357fac82dc17bc489a53fcd"
+    },
+    {
+      "filename": "packages/comp-transaction-detail/src/index.tsx",
+      "contentHash": "9b9ef78a8c2b003bcf63060fe24ee0303fe57757dc462f8a0e10a2f77e967889"
+    },
+    {
+      "filename": "packages/comp-transaction-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-form/package.json",
+      "contentHash": "7a1a0f922d8aa760fc7704c01ac277c040d4896be587ab7149f32bfbad98880a"
+    },
+    {
+      "filename": "packages/comp-transaction-form/src/index.tsx",
+      "contentHash": "a1c4e03e07134267c3af0d4ec2f6dfdbc12c2ef89e11305c03af11caf6ba8a2b"
+    },
+    {
+      "filename": "packages/comp-transaction-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-list/package.json",
+      "contentHash": "8e973a7a2377e2dc3171c40066e8b619ad97d99ec3e7738d8d5cd38e377af3d1"
+    },
+    {
+      "filename": "packages/comp-transaction-list/src/index.tsx",
+      "contentHash": "d4fdcc1fe4203c3294d52b0394368cec993079ce3872b464cf7fd3a2321d3136"
+    },
+    {
+      "filename": "packages/comp-transaction-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-stats/package.json",
+      "contentHash": "caa4af19df73024400e152a065f494e74eb0610ad80b17678b765a63f8fd88db"
+    },
+    {
+      "filename": "packages/comp-transaction-stats/src/index.tsx",
+      "contentHash": "899586143f5e2a8cecaa832df2a398730061513cc87823d48faef90041daf0d3"
+    },
+    {
+      "filename": "packages/comp-transaction-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-summary/package.json",
+      "contentHash": "dd03a20547ee8031226267aee13cd46e4d969b6df782c4716d5e4f854e92963b"
+    },
+    {
+      "filename": "packages/comp-transaction-summary/src/index.tsx",
+      "contentHash": "4c833a6c774464f08c7fd89f432fef0d0197f670e2254c1263f692a02487dae8"
+    },
+    {
+      "filename": "packages/comp-transaction-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-table/package.json",
+      "contentHash": "4fc45218fc2f010a20cfce823aebc8f3f682bfef6b2d4a06f9a480c25e95aa2c"
+    },
+    {
+      "filename": "packages/comp-transaction-table/src/index.tsx",
+      "contentHash": "2166593e0d47e71567bdd442e5ede90f1e64e7245f5fcabf6af854599ec8a436"
+    },
+    {
+      "filename": "packages/comp-transaction-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-transaction-tile/package.json",
+      "contentHash": "1e488f7991d609d38c75c10c51b9b8e7472bc23275df2a6ba6257f05d6232e66"
+    },
+    {
+      "filename": "packages/comp-transaction-tile/src/index.tsx",
+      "contentHash": "b2bdf645dfa84afbcf614aeb6804e6ff780a84c58fbf5dd7f21d1919e68b6dcb"
+    },
+    {
+      "filename": "packages/comp-transaction-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-badge/package.json",
+      "contentHash": "30bd32f17cd7ca186711097e209ac5680add39da67ad54e5365601283070c080"
+    },
+    {
+      "filename": "packages/comp-user-badge/src/index.tsx",
+      "contentHash": "9a92b97f8911318ed90edaf5b35f8f43fe31090ba93b3e1f10842fb47dbda863"
+    },
+    {
+      "filename": "packages/comp-user-badge/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-card/package.json",
+      "contentHash": "f8392cef07f5e5634f3df5f6de7ddc0b31b7042faf27faadc2ae198a692be98e"
+    },
+    {
+      "filename": "packages/comp-user-card/src/index.tsx",
+      "contentHash": "9dbc084c51d4d1f7ef214639a5b7dd05b19fc93c01d9d8dad2e69522ac67cd7e"
+    },
+    {
+      "filename": "packages/comp-user-card/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-chip/package.json",
+      "contentHash": "7732450eae5fc018fa16e88cdd7282da0f53a2a71e93ddf8b23408138d56909a"
+    },
+    {
+      "filename": "packages/comp-user-chip/src/index.tsx",
+      "contentHash": "98bd3fd83080dc56d1a34d63be0a8e6551d86fa91d1599ad3baef5baa8374eb8"
+    },
+    {
+      "filename": "packages/comp-user-chip/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-detail/package.json",
+      "contentHash": "c3bacd0063974feceeeed57ef8287e85d8d0bbc0843ca8303c3f389ac194283a"
+    },
+    {
+      "filename": "packages/comp-user-detail/src/index.tsx",
+      "contentHash": "75e3384b2ac8f1ee5d28832626e35d944aaf1288b798a81136dc89de6dc8a22b"
+    },
+    {
+      "filename": "packages/comp-user-detail/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-form/package.json",
+      "contentHash": "d43463c1e7fc1b7d428d638bc5ef4c976ef2aaf12bb1ba763d6af0583b7e01fc"
+    },
+    {
+      "filename": "packages/comp-user-form/src/index.tsx",
+      "contentHash": "e0638d9572b55c83346293813abc869f9334b03d247d118a9ae58007dce635c2"
+    },
+    {
+      "filename": "packages/comp-user-form/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-list/package.json",
+      "contentHash": "1b0a7400d5d5e4b06f2fb3eff7d4b374b0a27b6901ca2785d3b5ca70adce2290"
+    },
+    {
+      "filename": "packages/comp-user-list/src/index.tsx",
+      "contentHash": "84c06f2df47869ef3eba682252dc16669577058c98db3ac0d32fd38b69e8035b"
+    },
+    {
+      "filename": "packages/comp-user-list/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-stats/package.json",
+      "contentHash": "0ebe0c7f90796fa0ccd74acdb7245427a66a5c4ffc714d5a57783bc14aa8fdc4"
+    },
+    {
+      "filename": "packages/comp-user-stats/src/index.tsx",
+      "contentHash": "0e78c05dcaa307e72346888e2bb664af0d41dc7d1b0ea4e530a0353a416dc92b"
+    },
+    {
+      "filename": "packages/comp-user-stats/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-summary/package.json",
+      "contentHash": "fb0f34f538a0c5cb6ad1a6b9f07a0f90d1c4513c79007d63699da7d017fc5e27"
+    },
+    {
+      "filename": "packages/comp-user-summary/src/index.tsx",
+      "contentHash": "d59c12ff8eca5fb52995675cd9860c52139591ff28d5058782062b395cd3e1da"
+    },
+    {
+      "filename": "packages/comp-user-summary/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-table/package.json",
+      "contentHash": "3370ed78bdf6e1f045220ffc6a89645ecd73503976a749fdd51ebbcd563e556c"
+    },
+    {
+      "filename": "packages/comp-user-table/src/index.tsx",
+      "contentHash": "2ba0bc9767a4acdd6e064cd5de95f82c3fcb0f5b3cd88a184e4a4c143c706090"
+    },
+    {
+      "filename": "packages/comp-user-table/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
+    },
+    {
+      "filename": "packages/comp-user-tile/package.json",
+      "contentHash": "a3d33e46cbd344b56fa1bba7f60d5308eab6cd385686e04acc1ed65f13c5def5"
+    },
+    {
+      "filename": "packages/comp-user-tile/src/index.tsx",
+      "contentHash": "df49462684dae1e9a49d558c41f33a4e9e211f0f20e523a8d5bfb93aa6e315c5"
+    },
+    {
+      "filename": "packages/comp-user-tile/tsconfig.json",
+      "contentHash": "91e80d67ff0c29efbce5dbea5b8c2fe9fca64ce0ba26f76314561b042e329869"
     },
     {
       "filename": "packages/component-library/package.json",
-      "content": "{\n    \"name\": \"component-library\",\n    \"version\": \"0.0.1\",\n    \"private\": true,\n    \"main\": \"src/index.tsx\",\n    \"dependencies\": {\n        \"comp-product-badge\": \"*\",\n        \"comp-product-table\": \"*\",\n        \"comp-build-badge\": \"*\",\n        \"comp-build-table\": \"*\",\n        \"react\": \"*\"\n    },\n    \"devDependencies\": {\n        \"typescript\": \"*\"\n    }\n}\n",
-      "contentHash": "5c04d5e14dd0b3251000dffd5fe7e9b1430bdbe44ae6c03975857e0264740202",
-      "noWriteIfExists": false
+      "contentHash": "dfe864b0e1fe71ea048bcc77c4963cb504d1a01f2852029f835d501f3a8068fa"
     },
     {
       "filename": "packages/component-library/src/index.tsx",
-      "content": "export * from \"comp-product-badge\";\nexport * from \"comp-product-table\";\nexport * from \"comp-build-badge\";\nexport * from \"comp-build-table\";\n",
-      "contentHash": "e3aa91a81c56165f19320abc4d8c1569a61485cb7a2cc2c273face0647e0da1a",
-      "noWriteIfExists": false
+      "contentHash": "6819c2091572dd76848e10f8ecba3ae07fab4c923e4fdb6ecf536002b25fab46"
     },
     {
       "filename": "packages/demo/src/build-badge-demo.tsx",
-      "content": "import { useState, useEffect } from \"react\";\nimport {\n    IBuildBadgeProps,\n    BuildBadgeField,\n    BUILD_BADGE_FIELD_NAMES,\n    BuildBadge,\n} from \"component-library\";\n\nconst BUILD_BADGE_FIELD_NAMES_LIST = Object.keys(\n    BUILD_BADGE_FIELD_NAMES\n) as Array<BuildBadgeField>;\n\nconst BUILD_DEFAULT_DATA = {\n    buildNumber: 0,\n    date: \"\",\n    status: \"\",\n};\n\nexport function BuildBadgeDemo() {\n    const [demoField, setDemoField] = useState<BuildBadgeField>(\n        BUILD_BADGE_FIELD_NAMES_LIST[0]\n    );\n    const [demoDanger, setDemoDanger] = useState<boolean>(false);\n    const [demoWarning, setDemoWarning] = useState<boolean>(false);\n    const [demoInfo, setDemoInfo] = useState<boolean>(false);\n    const [demoDataJson, setDemoDataJson] = useState<string>(\n        JSON.stringify(BUILD_DEFAULT_DATA, null, 2)\n    );\n    const [demoDataObject, setDemoDataObject] =\n        useState<any>(BUILD_DEFAULT_DATA);\n    const [demoDataParseError, setDemoDataParseError] = useState<string | null>(\n        null\n    );\n\n    // Try to update the demo data object when the JSON changes\n    useEffect(() => {\n        try {\n            setDemoDataObject(JSON.parse(demoDataJson));\n            setDemoDataParseError(null);\n        } catch (error) {\n            setDemoDataParseError(error.message);\n        }\n    }, [demoDataJson]);\n\n    return (\n        <div className=\"flex flex-col justify-start items-center gap-2\">\n            <p className=\"text-gray-600\">Update demo data below</p>\n            <textarea\n                rows={10}\n                cols={40}\n                value={demoDataJson}\n                onChange={(e) => setDemoDataJson(e.target.value)}\n                className=\"border border-gray-300 rounded-lg p-2 font-mono\"\n            />\n\n            <div className=\"flex flex-row justify-start items-center gap-2\">\n                <label className=\"text-gray-600\">\n                    Select the field to display\n                </label>\n                <select\n                    value={demoField}\n                    onChange={(e) =>\n                        setDemoField(e.target.value as BuildBadgeField)\n                    }\n                >\n                    {BUILD_BADGE_FIELD_NAMES_LIST.map((field) => (\n                        <option key={field} value={field}>\n                            {BUILD_BADGE_FIELD_NAMES[field]}\n                        </option>\n                    ))}\n                </select>\n            </div>\n\n            <div className=\"flex flex-row justify-center items-center gap-2\">\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Danger?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoDanger}\n                        onChange={(e) => setDemoDanger(e.target.checked)}\n                    />\n                </div>\n\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Warning?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoWarning}\n                        onChange={(e) => setDemoWarning(e.target.checked)}\n                    />\n                </div>\n\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Info?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoInfo}\n                        onChange={(e) => setDemoInfo(e.target.checked)}\n                    />\n                </div>\n            </div>\n\n            <BuildBadge\n                value={demoDataObject}\n                field={demoField}\n                danger={demoDanger}\n                warning={demoWarning}\n                info={demoInfo}\n            />\n        </div>\n    );\n}\n",
-      "contentHash": "33250a1a34f80a769142a6eed1b7c358e9740f054bd83424fb8c3bd4ed5f427c",
-      "noWriteIfExists": false
+      "contentHash": "33250a1a34f80a769142a6eed1b7c358e9740f054bd83424fb8c3bd4ed5f427c"
+    },
+    {
+      "filename": "packages/demo/src/build-card-demo.tsx",
+      "contentHash": "e540b622a1937a24a735e6ef659f701740cd5eb74d82fb1cd2267f144cf9c171"
+    },
+    {
+      "filename": "packages/demo/src/build-chip-demo.tsx",
+      "contentHash": "201b07bb8cf135eaacececc0d3772c8e2e012a6f82306e08abf5e2f4be4b5743"
+    },
+    {
+      "filename": "packages/demo/src/build-detail-demo.tsx",
+      "contentHash": "16709fbab21520f401566d57deb7652b5ec9cdd2c6b6d9f8ef2dbe5ba7a4af51"
+    },
+    {
+      "filename": "packages/demo/src/build-form-demo.tsx",
+      "contentHash": "7e83b6e013c29cfb04996e53aef10dfaf76ec8b4daf4f891a2fbce7c69bab847"
+    },
+    {
+      "filename": "packages/demo/src/build-list-demo.tsx",
+      "contentHash": "d90b3b5f3c886ad688e976e31312d2f060bb31ee9ec244c3e1406c1577ca65e0"
+    },
+    {
+      "filename": "packages/demo/src/build-stats-demo.tsx",
+      "contentHash": "0c073a56285545d8b1129d11b57f6d0dd200c05841a8aafd76672cbcb4869981"
+    },
+    {
+      "filename": "packages/demo/src/build-summary-demo.tsx",
+      "contentHash": "f6815c442cd61351ffbcd8f7b5bf362878ec8798c07d1ed9fffaff3ce295d90f"
     },
     {
       "filename": "packages/demo/src/build-table-demo.tsx",
-      "content": "import { useState, useEffect } from \"react\";\nimport {\n    IBuildDataTableProps,\n    BuildDataTableColumn,\n    BUILD_DATA_TABLE_COLUMN_NAMES,\n    BuildDataTable,\n} from \"component-library\";\n\nconst BUILD_DATA_TABLE_COLUMNS_LIST = Object.keys(\n    BUILD_DATA_TABLE_COLUMN_NAMES\n) as Array<BuildDataTableColumn>;\n\nconst BUILD_DEFAULT_ARRAY = [\n    {\n        buildNumber: 0,\n        date: \"\",\n        status: \"\",\n    },\n];\n\nexport function BuildDataTableDemo() {\n    const [demoColumns, setDemoColumns] = useState<Array<BuildDataTableColumn>>(\n        BUILD_DATA_TABLE_COLUMNS_LIST\n    );\n    const [demoDataJson, setDemoDataJson] = useState<string>(\n        JSON.stringify(BUILD_DEFAULT_ARRAY, null, 2)\n    );\n    const [demoDataArray, setDemoDataArray] =\n        useState<Array<any>>(BUILD_DEFAULT_ARRAY);\n\n    // Try to update the demo data array when the JSON changes\n    useEffect(() => {\n        try {\n            setDemoDataArray(JSON.parse(demoDataJson));\n        } catch (error) {\n            console.error(error);\n        }\n    }, [demoDataJson]);\n\n    return (\n        <div className=\"flex flex-col justify-start items-center gap-2\">\n            <p className=\"text-gray-600\">Update demo data below</p>\n            <textarea\n                rows={10}\n                cols={40}\n                value={demoDataJson}\n                onChange={(e) => setDemoDataJson(e.target.value)}\n                className=\"border border-gray-300 rounded-lg p-2 font-mono\"\n                placeholder=\"Enter an array of objects here\"\n            />\n\n            <p className=\"text-gray-600\">Select columns to show</p>\n            <select\n                multiple={true}\n                value={demoColumns}\n                onChange={(e) =>\n                    setDemoColumns(\n                        Array.from(\n                            e.target.selectedOptions,\n                            (option) => option.value as BuildDataTableColumn\n                        )\n                    )\n                }\n            >\n                <option value=\"buildNumber\">Build Number</option>\n                <option value=\"date\">Date</option>\n                <option value=\"status\">Status</option>\n            </select>\n\n            <BuildDataTable value={demoDataArray} columns={demoColumns} />\n        </div>\n    );\n}\n",
-      "contentHash": "7847b7f336546b6291293f83a6ff3eede27c27ae8e53331238b03188977b8a2b",
-      "noWriteIfExists": false
+      "contentHash": "7847b7f336546b6291293f83a6ff3eede27c27ae8e53331238b03188977b8a2b"
+    },
+    {
+      "filename": "packages/demo/src/build-tile-demo.tsx",
+      "contentHash": "fde6efc620d1c87eedbedbeb1f7539e312f92a9665bae87dbde4ab335b2949de"
+    },
+    {
+      "filename": "packages/demo/src/category-badge-demo.tsx",
+      "contentHash": "c586987d500575af8613bbc2111b161a5412595c517df3c0b14e2401aa58aa6f"
+    },
+    {
+      "filename": "packages/demo/src/category-card-demo.tsx",
+      "contentHash": "29a8d6a2ae8c498c21343aa7d3cfc481dd5655185ca1bb8098172ae9fce4f2b2"
+    },
+    {
+      "filename": "packages/demo/src/category-chip-demo.tsx",
+      "contentHash": "dcd56cb776c34279ed2f98df2d4bf9d9f9cc4ebd1afc2aa519ec5df4d9d77018"
+    },
+    {
+      "filename": "packages/demo/src/category-detail-demo.tsx",
+      "contentHash": "08198848bbc7ed2c842e853761a03616c5116d8f17297eb07a0c7272c7eb8294"
+    },
+    {
+      "filename": "packages/demo/src/category-form-demo.tsx",
+      "contentHash": "c48a5e9bad86cbf964d4f4dd4755f4f4bf5ca7862f465ea57841212cc1458c58"
+    },
+    {
+      "filename": "packages/demo/src/category-list-demo.tsx",
+      "contentHash": "faa90eb5870bca76bec9f83b076a25159ca0585917c3f1e44797e1af01865e78"
+    },
+    {
+      "filename": "packages/demo/src/category-stats-demo.tsx",
+      "contentHash": "37ade79698eec195336080ec8aca0ef4833c1a172ef5eb506ad7249b45b3ea67"
+    },
+    {
+      "filename": "packages/demo/src/category-summary-demo.tsx",
+      "contentHash": "d86a927252979578f9fc45973eeb3331a8e7a4e64ca411e2201ad768b6344318"
+    },
+    {
+      "filename": "packages/demo/src/category-table-demo.tsx",
+      "contentHash": "6c3b6562196f005acdafd402c1c769e7fd742ec00800bd37c772d54c1e122b62"
+    },
+    {
+      "filename": "packages/demo/src/category-tile-demo.tsx",
+      "contentHash": "fe6170df4835776dfdc50e62dd4e0812649c68af5bedd65bbbe23fa569ccbd2f"
+    },
+    {
+      "filename": "packages/demo/src/customer-badge-demo.tsx",
+      "contentHash": "c4f1223eb57655a605014f5cba06b4006141d23c0d97c375984844e329b5b5b5"
+    },
+    {
+      "filename": "packages/demo/src/customer-card-demo.tsx",
+      "contentHash": "06efb8c64651da444b05408af6f1aaf25af272c289e784c6b9142c2ab5ae85ff"
+    },
+    {
+      "filename": "packages/demo/src/customer-chip-demo.tsx",
+      "contentHash": "0f20c3786f13f72b4922a0c9eb5bb28d8f1d2a9c094efd4c4a7cce3543ce6b08"
+    },
+    {
+      "filename": "packages/demo/src/customer-detail-demo.tsx",
+      "contentHash": "7e29fcd6f0184b1d2ab4fa9a7a5e5d1540b983d68b9df6ddc5ea7db6f8e15c75"
+    },
+    {
+      "filename": "packages/demo/src/customer-form-demo.tsx",
+      "contentHash": "13e75926d6a54a75a0c6ff4410100658e3eabae5461f7b7790bdaf2cf3e3a691"
+    },
+    {
+      "filename": "packages/demo/src/customer-list-demo.tsx",
+      "contentHash": "9c602eaf8b2a23961023eac1fbba7d6fb3c137ae5dca26c048d750dca61c5caa"
+    },
+    {
+      "filename": "packages/demo/src/customer-stats-demo.tsx",
+      "contentHash": "ec34a770bb3a1da38dbf7a7b45313687570cdd1d9652b04710c910dffeac827c"
+    },
+    {
+      "filename": "packages/demo/src/customer-summary-demo.tsx",
+      "contentHash": "52a079ca2e6a8c74caea1555564d2f4dee87485878d7d2453c53dad307f79be8"
+    },
+    {
+      "filename": "packages/demo/src/customer-table-demo.tsx",
+      "contentHash": "c6d94e6dda48f43c0926a7dd779693701abfb097b826250b9e133abf22a7d701"
+    },
+    {
+      "filename": "packages/demo/src/customer-tile-demo.tsx",
+      "contentHash": "41959a317033114357908ccb836bbc6d460c2f77d687647785537c5bad47e858"
     },
     {
       "filename": "packages/demo/src/index.tsx",
-      "content": "import { createRoot } from \"react-dom/client\";\nimport { useState, useEffect, useRef } from \"react\";\nimport { ProductBadgeDemo } from \"./product-badge-demo\";\nimport { ProductDataTableDemo } from \"./product-table-demo\";\nimport { BuildBadgeDemo } from \"./build-badge-demo\";\nimport { BuildDataTableDemo } from \"./build-table-demo\";\n\nconst DEMOS = {\n    ProductBadgeDemo,\n    ProductDataTableDemo,\n    BuildBadgeDemo,\n    BuildDataTableDemo,\n};\n\nconst DEMO_NAMES = {\n    ProductBadgeDemo: \"Product Badge\",\n    ProductDataTableDemo: \"Product Data Table\",\n    BuildBadgeDemo: \"Build Badge\",\n    BuildDataTableDemo: \"Build Data Table\",\n};\n\nconst DEMO_NAMES_LIST = Object.keys(DEMO_NAMES);\n\nfunction App() {\n    const currentDemoComponentRef = useRef(DEMOS[DEMO_NAMES_LIST[0]]);\n    const [currentDemoKey, setCurrentDemoKey] = useState<string>(\n        DEMO_NAMES_LIST[0]\n    );\n    const [demoUpdateKey, setDemoUpdateKey] = useState<number>(0);\n\n    // Update the current demo component when the key changes\n    useEffect(() => {\n        currentDemoComponentRef.current = DEMOS[currentDemoKey];\n        setDemoUpdateKey(demoUpdateKey + 1);\n    }, [currentDemoKey]);\n\n    return (\n        <div className=\"p-2 flex flex-col justify-start items-start gap-2\">\n            <h1 className=\"text-2xl font-bold\">Component Demo!</h1>\n\n            <p className=\"text-gray-600\">Select a component demo</p>\n\n            <select\n                value={currentDemoKey}\n                onChange={(e) => setCurrentDemoKey(e.target.value)}\n            >\n                {DEMO_NAMES_LIST.map((demoKey) => (\n                    <option key={demoKey} value={demoKey}>\n                        {DEMO_NAMES[demoKey]}\n                    </option>\n                ))}\n            </select>\n\n            <currentDemoComponentRef.current key={demoUpdateKey} />\n        </div>\n    );\n}\n\nconst rootEl = document.getElementById(\"root\");\nconst root = createRoot(rootEl);\nroot.render(<App />);\n",
-      "contentHash": "71f8c05f97bf988c1cdc8545b6eeef1eda518b01545275746801c026ede2a332",
-      "noWriteIfExists": false
+      "contentHash": "47602e82813679665e3b3c57b8bf43b071d2a5aa351acfa1b54151a5cfe317c2"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-badge-demo.tsx",
+      "contentHash": "0bd97fe57000c626c343ad7a848c5596508d9e5ab0d1244083bd290f02cdf0cb"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-card-demo.tsx",
+      "contentHash": "c8981fb6f0fa5b9415b00126e689bad055f441b57794610185732fcfe105e5df"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-chip-demo.tsx",
+      "contentHash": "ec236bc58bd892bbfaf41ad29a481f2cb883185dcd329816918c1a1d1b76e3e6"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-detail-demo.tsx",
+      "contentHash": "2fd1d1e558347b8ac840b8559768f84a863f83bebd7161365994ec47ab85c770"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-form-demo.tsx",
+      "contentHash": "b36f3542467ce10513ce0631eed933ccbb26617c61ffb05d34462910aec5b91a"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-list-demo.tsx",
+      "contentHash": "56fdf468aea32bdfa3eba0b0098ae5304a85adbaf68c802d923400c57f61a69f"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-stats-demo.tsx",
+      "contentHash": "62fec0542c8ae561fb65211387e6e9ac9fc5f3d8c637481b7f3ca5a5484d06d2"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-summary-demo.tsx",
+      "contentHash": "d7d79097ab1f8dc45ca309eab99edecbe0bdd148ce92e8c8052d086d6e264952"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-table-demo.tsx",
+      "contentHash": "557b2b12d1b459a02838576c9d8ffdf5a491ee7e7b42d3c626b7f8e6ec2b4dce"
+    },
+    {
+      "filename": "packages/demo/src/inventory-item-tile-demo.tsx",
+      "contentHash": "3b15a0267ae8ab8ec6a31bef252f0ba2636690663379ffffbf8fec9645f58b8f"
+    },
+    {
+      "filename": "packages/demo/src/order-badge-demo.tsx",
+      "contentHash": "39488e452503b6dcf7015a38a2762d0df622cc98dee2a77b4c04b3164a37c594"
+    },
+    {
+      "filename": "packages/demo/src/order-card-demo.tsx",
+      "contentHash": "582b0b97ec52b26f10f3d063042597b78a8e3af085a38808ee78c3653b039d11"
+    },
+    {
+      "filename": "packages/demo/src/order-chip-demo.tsx",
+      "contentHash": "1943c82fd770a0b361b248f3883c49c286f61e1ef7be3ceda06a5bc8e9803e75"
+    },
+    {
+      "filename": "packages/demo/src/order-detail-demo.tsx",
+      "contentHash": "b2cddb8629bd1987893c4029cde9951c769f8b247b670f794996159f201efc20"
+    },
+    {
+      "filename": "packages/demo/src/order-form-demo.tsx",
+      "contentHash": "c1cfc81ef0484dedb0b447252dcaaff62ccb2951813f7943629760a167a07153"
+    },
+    {
+      "filename": "packages/demo/src/order-list-demo.tsx",
+      "contentHash": "aff003c0a158d55f5090f449799cd6f5c63f2ccd20a391f3091a4c217441676d"
+    },
+    {
+      "filename": "packages/demo/src/order-stats-demo.tsx",
+      "contentHash": "2163dcefee0aa4066e97fdbc28e171f9336d8b286419662045ba396c0ce8dfd6"
+    },
+    {
+      "filename": "packages/demo/src/order-summary-demo.tsx",
+      "contentHash": "d00a8d60ff04f7874f4140d1efde23956f76176c6eca8c1d2b525c7b234116ac"
+    },
+    {
+      "filename": "packages/demo/src/order-table-demo.tsx",
+      "contentHash": "8e38e75a2cf1f90f6843cbeed420966392940bd5ad3c8b767a28b4736f019e4f"
+    },
+    {
+      "filename": "packages/demo/src/order-tile-demo.tsx",
+      "contentHash": "3c8c5ac8202ee69dc775a98fdd6852eaf423a97355730fb8264f92a067c298f0"
     },
     {
       "filename": "packages/demo/src/product-badge-demo.tsx",
-      "content": "import { useState, useEffect } from \"react\";\nimport {\n    IProductBadgeProps,\n    ProductBadgeField,\n    PRODUCT_BADGE_FIELD_NAMES,\n    ProductBadge,\n} from \"component-library\";\n\nconst PRODUCT_BADGE_FIELD_NAMES_LIST = Object.keys(\n    PRODUCT_BADGE_FIELD_NAMES\n) as Array<ProductBadgeField>;\n\nconst PRODUCT_DEFAULT_DATA = {\n    sku: \"\",\n    name: \"\",\n    description: \"\",\n    price: 0,\n    isAvailable: false,\n};\n\nexport function ProductBadgeDemo() {\n    const [demoField, setDemoField] = useState<ProductBadgeField>(\n        PRODUCT_BADGE_FIELD_NAMES_LIST[0]\n    );\n    const [demoDanger, setDemoDanger] = useState<boolean>(false);\n    const [demoWarning, setDemoWarning] = useState<boolean>(false);\n    const [demoInfo, setDemoInfo] = useState<boolean>(false);\n    const [demoDataJson, setDemoDataJson] = useState<string>(\n        JSON.stringify(PRODUCT_DEFAULT_DATA, null, 2)\n    );\n    const [demoDataObject, setDemoDataObject] =\n        useState<any>(PRODUCT_DEFAULT_DATA);\n    const [demoDataParseError, setDemoDataParseError] = useState<string | null>(\n        null\n    );\n\n    // Try to update the demo data object when the JSON changes\n    useEffect(() => {\n        try {\n            setDemoDataObject(JSON.parse(demoDataJson));\n            setDemoDataParseError(null);\n        } catch (error) {\n            setDemoDataParseError(error.message);\n        }\n    }, [demoDataJson]);\n\n    return (\n        <div className=\"flex flex-col justify-start items-center gap-2\">\n            <p className=\"text-gray-600\">Update demo data below</p>\n            <textarea\n                rows={10}\n                cols={40}\n                value={demoDataJson}\n                onChange={(e) => setDemoDataJson(e.target.value)}\n                className=\"border border-gray-300 rounded-lg p-2 font-mono\"\n            />\n\n            <div className=\"flex flex-row justify-start items-center gap-2\">\n                <label className=\"text-gray-600\">\n                    Select the field to display\n                </label>\n                <select\n                    value={demoField}\n                    onChange={(e) =>\n                        setDemoField(e.target.value as ProductBadgeField)\n                    }\n                >\n                    {PRODUCT_BADGE_FIELD_NAMES_LIST.map((field) => (\n                        <option key={field} value={field}>\n                            {PRODUCT_BADGE_FIELD_NAMES[field]}\n                        </option>\n                    ))}\n                </select>\n            </div>\n\n            <div className=\"flex flex-row justify-center items-center gap-2\">\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Danger?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoDanger}\n                        onChange={(e) => setDemoDanger(e.target.checked)}\n                    />\n                </div>\n\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Warning?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoWarning}\n                        onChange={(e) => setDemoWarning(e.target.checked)}\n                    />\n                </div>\n\n                <div className=\"flex flex-row justify-start items-center gap-2\">\n                    <label className=\"text-gray-600\">Info?</label>\n                    <input\n                        type=\"checkbox\"\n                        checked={demoInfo}\n                        onChange={(e) => setDemoInfo(e.target.checked)}\n                    />\n                </div>\n            </div>\n\n            <ProductBadge\n                value={demoDataObject}\n                field={demoField}\n                danger={demoDanger}\n                warning={demoWarning}\n                info={demoInfo}\n            />\n        </div>\n    );\n}\n",
-      "contentHash": "d09f883b654c6e0b7acb57f22282ba01ab8290d0e2a694dff7ad13ed1615333b",
-      "noWriteIfExists": false
+      "contentHash": "d09f883b654c6e0b7acb57f22282ba01ab8290d0e2a694dff7ad13ed1615333b"
+    },
+    {
+      "filename": "packages/demo/src/product-card-demo.tsx",
+      "contentHash": "4c2c4526cbc4ae6e2d888d00544db34b20ad8e552af0f6cf39a5ff7682c68043"
+    },
+    {
+      "filename": "packages/demo/src/product-chip-demo.tsx",
+      "contentHash": "ae0f384154a0512298b436053b8cadde81fd4a07d73d30b5b4fcd6aa7c6dff5b"
+    },
+    {
+      "filename": "packages/demo/src/product-detail-demo.tsx",
+      "contentHash": "5918ab18c8b81d557a9d4960e8c8a0005ec27f5a2a4f0da602f7e7d3e6a6a517"
+    },
+    {
+      "filename": "packages/demo/src/product-form-demo.tsx",
+      "contentHash": "545a3ec0a3e652a982ae425539b49e929b2f1178fbc3547bb29d35aa222e363c"
+    },
+    {
+      "filename": "packages/demo/src/product-list-demo.tsx",
+      "contentHash": "e41d198ef45907ea593bd9521a57760d14b8051520961a9f624a8b6dfeeed421"
+    },
+    {
+      "filename": "packages/demo/src/product-stats-demo.tsx",
+      "contentHash": "493072538c4be3733e29b3a185e4f12c4aedae2b881d0eefe65b22fe7094449e"
+    },
+    {
+      "filename": "packages/demo/src/product-summary-demo.tsx",
+      "contentHash": "404287fba045b21a392f04967cffe56c428e84b0a3ea66d7dc60c241f2b89fd7"
     },
     {
       "filename": "packages/demo/src/product-table-demo.tsx",
-      "content": "import { useState, useEffect } from \"react\";\nimport {\n    IProductDataTableProps,\n    ProductDataTableColumn,\n    PRODUCT_DATA_TABLE_COLUMN_NAMES,\n    ProductDataTable,\n} from \"component-library\";\n\nconst PRODUCT_DATA_TABLE_COLUMNS_LIST = Object.keys(\n    PRODUCT_DATA_TABLE_COLUMN_NAMES\n) as Array<ProductDataTableColumn>;\n\nconst PRODUCT_DEFAULT_ARRAY = [\n    {\n        sku: \"\",\n        name: \"\",\n        description: \"\",\n        price: 0,\n        isAvailable: false,\n    },\n];\n\nexport function ProductDataTableDemo() {\n    const [demoColumns, setDemoColumns] = useState<\n        Array<ProductDataTableColumn>\n    >(PRODUCT_DATA_TABLE_COLUMNS_LIST);\n    const [demoDataJson, setDemoDataJson] = useState<string>(\n        JSON.stringify(PRODUCT_DEFAULT_ARRAY, null, 2)\n    );\n    const [demoDataArray, setDemoDataArray] = useState<Array<any>>(\n        PRODUCT_DEFAULT_ARRAY\n    );\n\n    // Try to update the demo data array when the JSON changes\n    useEffect(() => {\n        try {\n            setDemoDataArray(JSON.parse(demoDataJson));\n        } catch (error) {\n            console.error(error);\n        }\n    }, [demoDataJson]);\n\n    return (\n        <div className=\"flex flex-col justify-start items-center gap-2\">\n            <p className=\"text-gray-600\">Update demo data below</p>\n            <textarea\n                rows={10}\n                cols={40}\n                value={demoDataJson}\n                onChange={(e) => setDemoDataJson(e.target.value)}\n                className=\"border border-gray-300 rounded-lg p-2 font-mono\"\n                placeholder=\"Enter an array of objects here\"\n            />\n\n            <p className=\"text-gray-600\">Select columns to show</p>\n            <select\n                multiple={true}\n                value={demoColumns}\n                onChange={(e) =>\n                    setDemoColumns(\n                        Array.from(\n                            e.target.selectedOptions,\n                            (option) => option.value as ProductDataTableColumn\n                        )\n                    )\n                }\n            >\n                <option value=\"sku\">Sku</option>\n                <option value=\"name\">Name</option>\n                <option value=\"description\">Description</option>\n                <option value=\"price\">Price</option>\n                <option value=\"isAvailable\">Is Available</option>\n            </select>\n\n            <ProductDataTable value={demoDataArray} columns={demoColumns} />\n        </div>\n    );\n}\n",
-      "contentHash": "ea3f7ef5edf4638b3028a495fff7f80d17874ac44dec210e09bfe9d8d08ea094",
-      "noWriteIfExists": false
+      "contentHash": "ea3f7ef5edf4638b3028a495fff7f80d17874ac44dec210e09bfe9d8d08ea094"
+    },
+    {
+      "filename": "packages/demo/src/product-tile-demo.tsx",
+      "contentHash": "d5adbac522fdb6052790cbb111d792dc5ede7a38e748862c4354d37c810c1e97"
+    },
+    {
+      "filename": "packages/demo/src/review-badge-demo.tsx",
+      "contentHash": "f6af296634162c304e63fe9aaf479497c4b6d1bca066bec5d38524b50c048402"
+    },
+    {
+      "filename": "packages/demo/src/review-card-demo.tsx",
+      "contentHash": "3158b4b809d8b0147d41f06fddc6d03e7db9b7d333cfa4d3da43a9c872dcc712"
+    },
+    {
+      "filename": "packages/demo/src/review-chip-demo.tsx",
+      "contentHash": "089f1ca542400ef3e447ddd8b60025dec01edf3e9ebeb74022559df29648131b"
+    },
+    {
+      "filename": "packages/demo/src/review-detail-demo.tsx",
+      "contentHash": "db791f52b549af9f2141ecd948a1833d9e464a946d32ad6d8e11c29944baf609"
+    },
+    {
+      "filename": "packages/demo/src/review-form-demo.tsx",
+      "contentHash": "229f36d5af5645513ec46890895584627c5ad131e775e27644f35f0dfd2c4be8"
+    },
+    {
+      "filename": "packages/demo/src/review-list-demo.tsx",
+      "contentHash": "116b9b53d6172ae21b407373d640b0df156688ed826990155e54de7eb1acbacf"
+    },
+    {
+      "filename": "packages/demo/src/review-stats-demo.tsx",
+      "contentHash": "cead2bc4dc1d898f728b605db930fceac88896ebf65d6cf136d091ed06bfdb31"
+    },
+    {
+      "filename": "packages/demo/src/review-summary-demo.tsx",
+      "contentHash": "55bc0350a919baf6b6a97e8811269473f88f7c99721799280e5f010611af7304"
+    },
+    {
+      "filename": "packages/demo/src/review-table-demo.tsx",
+      "contentHash": "9f071a033c0f88b0384fc222532824a3e24f7b2af91a0e180a72a5f0e353fc3e"
+    },
+    {
+      "filename": "packages/demo/src/review-tile-demo.tsx",
+      "contentHash": "bf8dc76220f2a6c0ac4f0fa056a2ed0a6d3ff0269fbeff3d49b6b29f8ee4014a"
+    },
+    {
+      "filename": "packages/demo/src/supplier-badge-demo.tsx",
+      "contentHash": "06797ff69caf7d61f6a2b5c1a1b431d0515011d66cf381cda0530139a5ff09cd"
+    },
+    {
+      "filename": "packages/demo/src/supplier-card-demo.tsx",
+      "contentHash": "403613c3a6505ca78b4f005feef21cd32928d1c15a7a60d83d52ab92330cb170"
+    },
+    {
+      "filename": "packages/demo/src/supplier-chip-demo.tsx",
+      "contentHash": "43240e32c191d15044c5d7b5a6de9fc951a28d2033e7427be543e9b598b5033d"
+    },
+    {
+      "filename": "packages/demo/src/supplier-detail-demo.tsx",
+      "contentHash": "224599f55ce9d0a78f361cb84fb0fd8137c7a228b45ec88eb1e72c8fb2e0e757"
+    },
+    {
+      "filename": "packages/demo/src/supplier-form-demo.tsx",
+      "contentHash": "6f59b7f2bee065c81b8f361410a5268edb107b8c2a21ae3733edc37118be5c78"
+    },
+    {
+      "filename": "packages/demo/src/supplier-list-demo.tsx",
+      "contentHash": "c33b0472545a54def81592f5c9cf8112c017340199304d408fadc9176bc94479"
+    },
+    {
+      "filename": "packages/demo/src/supplier-stats-demo.tsx",
+      "contentHash": "93295f150dff2ddae18200daa609141452b535c846f3b298a9e568860653c5c2"
+    },
+    {
+      "filename": "packages/demo/src/supplier-summary-demo.tsx",
+      "contentHash": "f68838d86fc54c87a15c56cf547584f5a9e82c2cb56386321b506cc2ff40d99a"
+    },
+    {
+      "filename": "packages/demo/src/supplier-table-demo.tsx",
+      "contentHash": "cb9ddfdcccb7e9fec8d242514e549c73ba199a796e8d3d710f28a7462d5dfdd8"
+    },
+    {
+      "filename": "packages/demo/src/supplier-tile-demo.tsx",
+      "contentHash": "103113f038c85c9b504706e51400162be8aec9c978fc19cb03b82e66787a199f"
+    },
+    {
+      "filename": "packages/demo/src/transaction-badge-demo.tsx",
+      "contentHash": "28968c1b2f95474c0cddfc517abe48f2de02009b777a86ecdb502cc29ac8f1e6"
+    },
+    {
+      "filename": "packages/demo/src/transaction-card-demo.tsx",
+      "contentHash": "6d65db9c841db0bdbcda470be05b2ea244e1df8f7dd4252b52334ce4a9fbb70d"
+    },
+    {
+      "filename": "packages/demo/src/transaction-chip-demo.tsx",
+      "contentHash": "0d577e781a52ef9d14861b9847c9f61fc62a8408d87ea21d4610b32708bc7ed9"
+    },
+    {
+      "filename": "packages/demo/src/transaction-detail-demo.tsx",
+      "contentHash": "65b5962bbdb12563414c0fead893a54248e34d3ad1af7111c08f145ad9dbbfb9"
+    },
+    {
+      "filename": "packages/demo/src/transaction-form-demo.tsx",
+      "contentHash": "e92c29275e016e96408b6f202b357d4a8476e419a84ee92b1a27576c7ecb5427"
+    },
+    {
+      "filename": "packages/demo/src/transaction-list-demo.tsx",
+      "contentHash": "d1e4655f7ac5a55589402874d5d2f4df65ca6db1f32c5cb394033de5e0dfc43c"
+    },
+    {
+      "filename": "packages/demo/src/transaction-stats-demo.tsx",
+      "contentHash": "20128aca673718a225c2cacc09274fafacbd2fdda466893ac98725224c51454f"
+    },
+    {
+      "filename": "packages/demo/src/transaction-summary-demo.tsx",
+      "contentHash": "0d7ff61e9ef6e9a71061cb19bd1c1287b8c895f9a5f930793fc478a1869043e9"
+    },
+    {
+      "filename": "packages/demo/src/transaction-table-demo.tsx",
+      "contentHash": "ef5e1a97f1625071f7102900fe5c7cc967bb25c42c774a54ca52b3e0caddf799"
+    },
+    {
+      "filename": "packages/demo/src/transaction-tile-demo.tsx",
+      "contentHash": "0341a72aadfd9bdfbc57037f27b9267a603a2917aa09ea430f224037d97dcd0c"
+    },
+    {
+      "filename": "packages/demo/src/user-badge-demo.tsx",
+      "contentHash": "d264c7e7dfe2fad96ab2415eb13f048fbdcc0025a8d2420435667f7bb427d31c"
+    },
+    {
+      "filename": "packages/demo/src/user-card-demo.tsx",
+      "contentHash": "92f37a4cc283cd1d434172753df1c4389f50d883ab51b1e7ac356342b2d7eabc"
+    },
+    {
+      "filename": "packages/demo/src/user-chip-demo.tsx",
+      "contentHash": "fffeac3d7630bd6e53b700f51980638fb86ea468a57001ca62ac9b19c58854c7"
+    },
+    {
+      "filename": "packages/demo/src/user-detail-demo.tsx",
+      "contentHash": "13ae9721435e47391aba9f15122310d4c50b9a9afe45a4e6be8812e30d7900bf"
+    },
+    {
+      "filename": "packages/demo/src/user-form-demo.tsx",
+      "contentHash": "4b81a64c9d4f70002338d04dd841cadfd351af0a2e4db7ccf78c8811048d5086"
+    },
+    {
+      "filename": "packages/demo/src/user-list-demo.tsx",
+      "contentHash": "b67117c76630dbad18ad629958e452dd2f02123a45638ed8858d16bd3ecaa078"
+    },
+    {
+      "filename": "packages/demo/src/user-stats-demo.tsx",
+      "contentHash": "883ea690868df2e6ba8090d2c2ff5842e6476e82f1a7d0bdaff1ba1ddf161a16"
+    },
+    {
+      "filename": "packages/demo/src/user-summary-demo.tsx",
+      "contentHash": "3d39e89094acf51ba2d1a92bfa6747d903af35743f84201a047910d1dfe5c03e"
+    },
+    {
+      "filename": "packages/demo/src/user-table-demo.tsx",
+      "contentHash": "06b6098cbdf9473f4cf060f69f1b3212d695717f1b07afb6599d31c360ca63b8"
+    },
+    {
+      "filename": "packages/demo/src/user-tile-demo.tsx",
+      "contentHash": "5b9b45b117dbe4b897bd2256bc61d643ada9a8edbba6ee3e0dfcbc50ceb2803a"
     }
   ]
 }
